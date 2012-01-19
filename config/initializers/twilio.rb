@@ -3,7 +3,7 @@
   TwilioAuthToken="7d551e920f918ab6be67514a7d6b6408"
  
   # base URL of this application
-  BASE_URL = "http://hollow-rain-5753.herokuapp.com"
+  BASE_URL = "http://deep-samurai-9073.herokuapp.com"
  
   # Outgoing Caller ID you have previously validated with Twilio
   CALLER_ID = '2563181720'

@@ -26,7 +26,7 @@ class IvrController < ApplicationController
     end
     
     #bad or no input
-    redirect_to :action => '/index'
+    redirect_to :action => 'index'
   end
   
   #perfect
