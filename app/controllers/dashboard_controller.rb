@@ -39,5 +39,21 @@ class DashboardController < ApplicationController
       end
   end
   
+  def update_waiting_room_list
+      #create client
+      client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
+      #gets the participant list
+      waiting_participants = client.account.conferences.get('WaitingRoom').participants
+      @waiting_participants = []
+      waiting_participants.list.each do |call|
+        @waiting_participants << call
+      end
+      #set the count for the view
+      @wait_count = @waiting_participants.count.to_s
+      respond_to do |format|
+        format.html  {render :layout => false}
+      end
+  end
+  
 
 end

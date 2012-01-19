@@ -45,12 +45,18 @@ class IvrController < ApplicationController
   
   #menu for the conference system
   def conference_join
-
     #checks if caller wants to return to root menu
     if params['Digits'] == '9'
       redirect_to :action => "index"
       return
     end
+    
+    #park the call in the Waiting Room
+    if params['Digits'] == '7'
+      redirect_to :action => "conference_waiting_room"
+      return
+    end
+    
     
     #checks if pin is exists and is long enough
     if !params['Digits'] or params['Digits'].length != 4
@@ -71,6 +77,10 @@ class IvrController < ApplicationController
   def conference_join_failed
     @redirect_to = BASE_URL + '/ivr/conference_hold'
     render :action => "conference_join_failed.xml.builder"
+  end
+  
+  def conference_waiting_room
+    render :action => "conference_waiting_room.xml.builder"
   end
   
   def hangup
