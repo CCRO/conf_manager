@@ -31,8 +31,7 @@ class IvrController < ApplicationController
   
   #perfect
   #says contact info then redirects to the ivr root 
-  def contact_info
-    
+  def contact_info 
     @redirect_to = BASE_URL + '/ivr/index'
     render :action => "contact_info.xml.builder", :layout => false 
   end

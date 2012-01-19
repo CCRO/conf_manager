@@ -5,49 +5,26 @@
 	    	</div> <!--  end .call_list_items-->
     </div><!--end .well-->
 
-<script>
-	//window.setTimeout(replace_call_list, 1000);
-	function replace_call_list() {
-	// Do a $.ajax call to your server.
-	$.ajax({
-		url: '/dashboard/update_call_list',
-		type: 'get',
-		dateType: 'html',
-		success: function(data) {
-			// Replace the list with the new one.
-			$('.call_list_items').html(data);
-			// And restart the timer.
-			//timer = setTimeout(replace_call_list(), 1000 * n_seconds);
-			window.setTimeout(replace_call_list, 2000);
-		}//,
-		//failure: alert("ajax failed to get")
-	});
-}
-replace_call_list();
-</script>
+	<script>
+		//Script that updates the call list every few seconds
+		function replace_call_list() {
+		// Do a $.ajax call to your server.
+		$.ajax({
+			url: '/dashboard/update_call_list',
+			type: 'get',
+			dateType: 'html',
+			success: function(data) {
+				// Replace the list with the new one.
+				$('.call_list_items').html(data);
+				// And restart the timer.
+				window.setTimeout(replace_call_list, 2000);
+			}//,
+			//failure: alert("ajax failed to get")
+		});
+	}
+	replace_call_list();
+	</script>
 
-
-<!-- original
-<script>
-var n_seconds = 1;
-var timer     = null;
-function replace_call_list() {
-	// Do a $.ajax call to your server.
-	$.ajax({
-		url: '/dashboard/update_call_list',
-		type: 'get',
-		dateType: 'html',
-		success: function(data) {
-			// Replace the list with the new one.
-			$('.call_list_items').html(data);
-			// And restart the timer.
-			timer = setTimeout(replace_call_list(), 1000 * n_seconds);
-			}
-	});
-}
-replace_call_list();
-</script>
--->
 	<div class="well">
         	<h3>Call Queue (#)</h3>
         	<ul>
