@@ -1,0 +1,14 @@
+ruby 1.9.2p290 (2011-07-09 revision 32553) [i686-linux]
+Gem 1.8.10
+Rails 3.1.3
+using twilio-ruby
+
+hosted on
+http://hollow-rain-5753.herokuapp.com
+
+A demo app to practice the basic call and sms capabilities of twilio
+
+inbound calls
+outbound calls
+inbound sms
+outbound sms

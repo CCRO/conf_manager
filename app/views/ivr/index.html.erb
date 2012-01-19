@@ -1,0 +1,47 @@
+<h1>Calls in Queue</h1>
+
+	<div class="call_list_items">
+	  <% @call_list.each do |call| %>
+	  	<%= link_to call, {:action => "sauce"}, :remote => true, :class => "button-link" %>	
+	  <% end %>
+  	</div> <!--  end .call_list_items-->
+
+<script>
+	var n_seconds = 3;
+	var timer     = null;
+	function replace_call_list() {
+    // Do a $.ajax call to your server.
+    $.ajax({
+        url: '/client/update_call_list',
+        type: 'get',
+        dateType: 'html',
+        success: function(data) {
+            // Replace the list with the new one.
+            $('.call_list_items').html(data);
+            // And restart the timer.
+            timer = setTimeout(replace_call_list(), 1000 * n_seconds);
+        }
+    });
+}
+replace_call_list();
+</script>
+
+
+
+<%#@call_list.each do |call| %>
+  <%#=call%>
+<%#end%>
+
+<h1>Twilio phone reminder demo</h1>
+<h2 style="color: #ff0000"><%= params['msg'] %></h2>
+<h3>Enter your phone number to receive an automated reminder</h3>
+<form action="/client/makecall" method="post">
+    <input type="text" name="number" />
+    <input type="submit" value="Call me!">
+</form>
+
+<h3>Enter your phone number to receive an Text reminder</h3>
+<form action="/client/sendtext" method="post">
+    <input type="text" name="number" />
+    <input type="submit" value="Text me!">
+</form>
