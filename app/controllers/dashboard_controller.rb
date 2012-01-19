@@ -42,8 +42,14 @@ class DashboardController < ApplicationController
   def update_waiting_room_list
       #create client
       client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
+      
+      #conf_waiting_room = client.account.conferences.list(:FriendlyName => 'WaitingRoom')
+      
+      waiting_participants = client.account.conferences.get('CF827b8578e057de54bbb6263ed59410ad').participants
+      
       #gets the participant list
-      waiting_participants = client.account.conferences.get('WaitingRoom').participants
+      #waiting_participants = conf_waiting_room.participants
+      
       @waiting_participants = []
       waiting_participants.list.each do |call|
         @waiting_participants << call
