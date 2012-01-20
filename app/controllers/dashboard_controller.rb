@@ -3,6 +3,8 @@ class DashboardController < ApplicationController
   layout 'dashboard'
   
   def index
+    @contacts = Contact.all
+    @conferences = Conference.all
 
   end
   

@@ -1,4 +1,8 @@
 ConfManager::Application.routes.draw do
+  resources :conferences
+
+  resources :contacts
+
   get "dashboard/index"
   get "dashboard/update_call_list"
   get "dashboard/update_waiting_room_list"

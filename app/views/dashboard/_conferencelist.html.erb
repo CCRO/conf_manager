@@ -1,0 +1,55 @@
+<!-- Main hero unit for a primary marketing message or call to action -->
+<div class="hero-unit">
+	<h3>Conference List</h3>
+	
+	<table>
+	  <tr>
+	    <th>Name</th>
+	    <th>Pin</th>
+	    <th>Sid</th>
+	    <th>Description</th>
+	    <th></th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+
+	<% @conferences.each do |conference| %>
+	  <tr>
+	    <td><%= conference.confname %></td>
+	    <td><%= conference.pin %></td>
+	    <td><%= conference.sid %></td>
+	    <td><%= conference.description %></td>
+	    <td><%= link_to 'Show', conference %></td>
+	    <td><%= link_to 'Edit', edit_conference_path(conference) %></td>
+	    <td><%= link_to 'Destroy', conference, confirm: 'Are you sure?', method: :delete %></td>
+	  </tr>
+	<% end %>
+	</table>
+
+	<br />
+
+	<%= link_to 'New Conference', new_conference_path %>
+	
+	
+	
+	<h3>Active Conference Groups</h3>
+	<ul>
+	    	<li>Conference 1,
+			<a href="#" rel="popover" title="%CONFERENCE NAME%" data-content="XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX">Participants(#)</a>, 
+			Guest PIN: ____, 
+			Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a> <br/> 
+			Notes:_________________________________________________________________
+		</li>           	
+	
+			</li>
+		<li>Conference 3, <a href="#">Participants(#)</a>, Guest PIN: ____, Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a> <br/> 
+		Notes:_________________________________________________________________
+		</li>
+	  	</ul> 
+	<h3>Available Conference Lines</h3>
+	<ul>
+	    	<li>Conference A, Set Guest Pin ____, Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></li>
+	    	<li>Conference B, Set Guest Pin ____, <a href="#">Invite Contacts</a></li>
+	    	<li>Conference C, Set Guest Pin ____, <a href="#">Invite Contacts</a></li>
+	</ul> 
+</div> <!--end hero-unit-->

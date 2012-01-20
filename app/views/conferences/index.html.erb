@@ -1,0 +1,29 @@
+<h1>Listing conferences</h1>
+
+<table>
+  <tr>
+    <th>Confname</th>
+    <th>Pin</th>
+    <th>Sid</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @conferences.each do |conference| %>
+  <tr>
+    <td><%= conference.confname %></td>
+    <td><%= conference.pin %></td>
+    <td><%= conference.sid %></td>
+    <td><%= conference.description %></td>
+    <td><%= link_to 'Show', conference %></td>
+    <td><%= link_to 'Edit', edit_conference_path(conference) %></td>
+    <td><%= link_to 'Destroy', conference, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Conference', new_conference_path %>

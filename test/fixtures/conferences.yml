@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  confname: MyString
+  pin: MyString
+  sid: MyString
+  description: MyText
+
+two:
+  confname: MyString
+  pin: MyString
+  sid: MyString
+  description: MyText
