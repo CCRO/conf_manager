@@ -31,19 +31,26 @@ class DashboardController < ApplicationController
       client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
      
       #Find Conference by friendly name
-      conf_waiting_room = client.account.conferences.list(:FriendlyName => 'Waiting Room')
-      
-      conf_waiting_room.each do |conf|
-        conf.participants.list
-      end
+      #conf_waiting_room = client.account.conferences.list(:FriendlyName => 'Waiting Room')
       
       #get participant list from twilio
-      waiting_participants = client.account.conferences.get('CF58122a3cb34c67f9a799c395903e9d59').participants 
+      
+      #waiting_participants = client.account.conferences.get('CF58122a3cb34c67f9a799c395903e9d59').participants 
+       
             
       @waiting_participants = []
-      waiting_participants.list.each do |call|
-        @waiting_participants << call
+      
+      client.account.conferences.list.each do |conf|
+      #Conference.all.each do |conf|
+        waiting_participants = client.account.conferences.get(conf.sid).participants
+        waiting_participants.list.each do |call|
+          @waiting_participants << call
+        end
       end
+      
+      #waiting_participants.list.each do |call|
+      #  @waiting_participants << call
+      #end
       #set the count for the view
       @wait_count = @waiting_participants.count.to_s
       respond_to do |format|
