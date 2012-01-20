@@ -34,19 +34,25 @@ class DashboardController < ApplicationController
       #conf_waiting_room = client.account.conferences.list(:FriendlyName => 'Waiting Room')
       
       #get participant list from twilio
-      
-      #waiting_participants = client.account.conferences.get('CF58122a3cb34c67f9a799c395903e9d59').participants 
-       
-            
       @waiting_participants = []
+      @conference_sid_in_use = ""
       
-      client.account.conferences.list.each do |conf|
+      #waiting_participants = client.account.conferences.get('Waiting Room').participants 
+      waiting_participants = client.account.conferences.list(:FriendlyName => 'Waiting Room')
+      waiting_participants.list.each do |call|
+          @waiting_participants << client.account.conferences.get('Waiting Room').participants.get(call)
+      end 
+
+      #client.account.conferences.list.each do |conf|
       #Conference.all.each do |conf|
-        waiting_participants = client.account.conferences.get(conf.sid).participants
-        waiting_participants.list.each do |call|
-          @waiting_participants << call
-        end
-      end
+      #  waiting_participants = client.account.conferences.get(conf.sid).participants
+      #  waiting_participants.list.each do |call|
+      #    @waiting_participants << client.account.conferences.get(conf.sid).participants.get(call)
+      #    if !@waiting_participants.empty?
+      #      @conference_sid_in_use = conf.sid.to_s
+      #    end
+      #  end
+      #end
       
       #waiting_participants.list.each do |call|
       #  @waiting_participants << call
