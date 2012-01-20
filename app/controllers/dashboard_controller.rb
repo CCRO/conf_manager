@@ -35,7 +35,7 @@ class DashboardController < ApplicationController
       waiting_participants = client.account.conferences.get('CF58122a3cb34c67f9a799c395903e9d59').participants 
             
       @waiting_participants = []
-      waiting_participants.each do |call|
+      waiting_participants.list.each do |call|
         @waiting_participants << call
       end
       #set the count for the view
