@@ -31,6 +31,10 @@ class DashboardController < ApplicationController
       #Find Conference by friendly name
       conf_waiting_room = client.account.conferences.list(:FriendlyName => 'Waiting Room')
       
+      conf_waiting_room.each do |conf|
+        conf.participants.list
+      end
+      
       #get participant list from twilio
       waiting_participants = client.account.conferences.get('CF58122a3cb34c67f9a799c395903e9d59').participants 
             
