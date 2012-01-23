@@ -5,9 +5,46 @@ class DashboardController < ApplicationController
   def index
     @contacts = Contact.all
     @conferences = Conference.all
-
   end
   
+  def update_conference_list
+    #create client
+    client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
+    @conferences = Conference.all
+    
+    #will store the confname => participants array 
+    @participants_hash = Hash.new
+    
+    @conferences.each do |conference|
+      conf_list = client.account.conferences.list(:FriendlyName => conference.confname)
+      participants_array = Array.new
+      conf_list.each do |conf|
+        participants = conf.participants
+        participants.list.each do |participant|
+          participants_array << participant.call_sid
+        end
+      end
+      @participants_hash[conference.confname] = participants_array
+    end
+    
+    @active_conf = Array.new
+    @empty_conf = Array.new
+    
+    @conferences.each do |conference|
+      if @participants_hash[conference.confname].count < 1
+         @empty_conf << conference.confname
+      else
+         @active_conf << conference.confname
+      end     
+    end
+    
+    respond_to do |format|
+        format.html  {render :layout => false}
+    end
+  end
+
+
+
   def update_call_list
       #create client
       client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
