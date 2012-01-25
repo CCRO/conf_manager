@@ -32,7 +32,7 @@ class DashboardController < ApplicationController
       url = BASE_URL + '/ivr/hangup'
       client.account.calls.get(sid).update({:url => url})
     end
-
+    render :nothing => true
   end
   
   
