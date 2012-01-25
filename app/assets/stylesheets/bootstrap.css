@@ -1938,7 +1938,7 @@ footer {
 }
 
 .btn.primary_phone {
-  padding: 5px;
+  margin-bottom: 10px;
   color: #ffffff;
   background-color: #0064cd;
   background-repeat: repeat-x;
