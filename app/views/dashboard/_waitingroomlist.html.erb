@@ -1,9 +1,19 @@
-<h3>Call Queue (<%=@wait_count%>)</h3>       
+<h3>Call Queue (<%=@wait_count%>)</h3>
 
 <% @waiting_participants.each do |call| %>
-	<button class="btn primary_phone ui-widget-content">
-		<p><%= get_caller_name(call) %></p>
-		<p>From:<%= call.from %></p>
-		<p>To:<%= call.to %></p>
-	</button>
+
+	<script>
+		$(function() {
+			$( "#Q<%=call.sid%>" ).draggable({ revert: true });
+		});
+	</script>
+
+	<div id="Q<%=call.sid%>" class="ui-widget-content">
+		<div class="btn primary_phone" style="width: 150px">
+			<p><%= get_caller_name(call) %></p>
+			<p>From:<%= call.from %></p>
+			<p>To:<%= call.to %></p>
+		</div>
+	</div>
+	
 <% end %>
