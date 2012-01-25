@@ -6,6 +6,7 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "bootstrap-twipsy", "bootstrap-popover" %>
+  
   <%= csrf_meta_tags %>
   
   <meta name="description" content="">
@@ -33,9 +34,20 @@
   	
 	<!-- Jquery and bootstrap Libraries -->
 	<script src="http://code.jquery.com/jquery-latest.js"></script> 
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
 	<!-- <script src="/js/bootstrap-twipsy.js"></script>
 	<script src="/js/bootstrap-popover.js"></script>
 	-->
+	
+	<!-- -->
+	<script type="text/javascript">
+		$( init );
+ 
+		function init() {
+  			$('.makeMeDraggable').draggable({ revert: true });
+		}
+	</script>
+	
 	
 	<!-- PopOver Functionality for a[rel=popover]-->	
 	<script>
