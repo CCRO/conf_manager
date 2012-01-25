@@ -5,6 +5,9 @@
 	<script>
 		$(function() {
 			$( "#C<%=call.sid%>" ).draggable({ revert: true });
+			$( "#makeMeDroppable" ).droppable({
+    			drop: handleDropEvent
+  			});
 		});
 	</script>
 	

@@ -1,3 +1,9 @@
+<script>
+function handleDropEvent( event, ui ) {
+  		var draggable = ui.draggable;
+  		alert( 'The call with SID "' + draggable.attr('id') + '" was dropped onto me!' );
+	}
+</script>
 <div id="makeMeDroppable">
 <h3>Call Queue (<%=@wait_count%>)</h3>
 

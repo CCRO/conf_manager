@@ -1,7 +1,7 @@
 xml.instruct!
 xml.Response do
 	xml.Gather(:action => @post_to, :numDigits => 1) do
-		xml.Say "Thank you for calling  C.C.R.O. The Committee of Chief Risk Officers."
+		xml.Say "Thank you for calling  CCRO The Committee of Chief Risk Officers."
         xml.Say "Press 1 to join a conference."
         xml.Say "Press 2 to hear our contact information."
         xml.Say "Press 3 to hear our mailing address."
@@ -10,7 +10,7 @@ xml.Response do
     	xml.Pause :length => 1
     end
     xml.Gather(:action => @post_to, :numDigits => 1) do
-		xml.Say "Thank you for calling  C.C.R.O."
+		xml.Say "Thank you for calling  CCRO"
         xml.Say "Press 1 to join a conference."
         xml.Say "Press 2 to hear our contact information."
         xml.Say "Press 3 to hear our mailing address."
