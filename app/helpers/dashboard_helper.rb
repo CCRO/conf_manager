@@ -18,7 +18,8 @@ module DashboardHelper
   end #end get_caller_name(call)
   
   def link_to_hangup_call(sid)
-    link_to image_tag('/redx.png', :style => "float: right;" ), :controller => 'dashboard', :action => 'hangup_call', :sid => sid 
+    js = 'var url = ' + BASE_URL + '/dashboard/hangup_call/?sid=' + sid + '; $.post(url);'
+    link_to_function image_tag('/redx.png', :style => "float: right;" ), js
   end
 
   def get_conf_pin(conf)
