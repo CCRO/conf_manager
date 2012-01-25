@@ -79,12 +79,9 @@ class IvrController < ApplicationController
       #render :action => "conference_join_failed.xml.builder", :layout => false 
       #return
     end
-   
+ 
     #checks if pin exists in the list of conferences
-        
-    #@post_to = BASE_URL + '/conference_join'
-    @digits= params['Digits']
-    @redirect_to = BASE_URL + '/ivr/conference_hold'
+    @conf_to_join = Conference.where("pin = ?", params['Digits'] ).first.confname
     render :action => "conference_join.xml.builder", :layout => false 
   end
   
