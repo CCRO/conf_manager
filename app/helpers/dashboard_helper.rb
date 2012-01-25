@@ -17,4 +17,8 @@ module DashboardHelper
     return callerstr    
   end #end get_caller_name(call)
   
+  def get_conf_pin(conf)
+    return pinstr = Conference.where("confname = ?", conf).first.pin
+  end
+  
 end

@@ -21,7 +21,7 @@
 	<h3>Available Conferences: </h3>
 	<ul>
 			<% @empty_conf.each do |conf| %>
-				<li><%= conf %>, Set Guest Pin ____, Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></li>
+				<li><%= conf %>, PIN: <%= get_conf_pin(conf) %>, Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></li>
 			<% end %>
 	</ul>
 <% end %>
