@@ -6,8 +6,7 @@
 	  		//strips off the first character
 	  		var sid = draggable.attr('id').substring(1);
 	  		var url = '<%=BASE_URL%>' + '/dashboard/drop_into_waiting_room/?sid=' + sid
-	  		$.post(url, function(data) {});
-	  		alert( 'The call with SID: ' + sid + ' was dropped onto ' + url );
+	  		$.post(url);
 		}
 	</script>
 	
@@ -38,7 +37,7 @@
 			// Replace the list with the new one.
 			$('.waiting_room_list_items').html(data);
 			// And restart the timer.
-			window.setTimeout(replace_waiting_room_list, 1500);
+			window.setTimeout(replace_waiting_room_list, 1000);
 		}//,
 		//failure: alert("ajax failed to get")
 	});
@@ -58,7 +57,7 @@ replace_waiting_room_list();
 			// Replace the list with the new one.
 			$('.call_list_items').html(data);
 			// And restart the timer.
-			window.setTimeout(replace_call_list, 1500);
+			window.setTimeout(replace_call_list, 1000);
 		}//,
 		//failure: alert("ajax failed to get")
 	});
