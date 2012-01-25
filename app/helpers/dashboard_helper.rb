@@ -19,7 +19,7 @@ module DashboardHelper
   
   def link_to_hangup_call(sid)
     js = 'var url = "' + BASE_URL + '/dashboard/hangup_call/?sid=' + sid + '"; $.post(url);'
-    link_to_function image_tag('/redx.png', :style => "float: right;" ), js
+    link_to_function image_tag('/redx.png', :style => "float: right;" ), js, :confirm => "Hang up call?"
   end
 
   def get_conf_pin(conf)
