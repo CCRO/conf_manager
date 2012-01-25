@@ -8,11 +8,13 @@ module DashboardHelper
     
     if !caller.nil?
       callerstr = caller.user
-    #elsif !call.caller_name.nil? or !call.caller_name.empty?
-      #callerstr = call.caller_name
+    elsif !call.caller_name.nil? 
+      callerstr = call.caller_name
     else
      callerstr = 'Unknown Caller'     
     end 
+    
     return callerstr    
-  end
+  end #end get_caller_name(call)
+  
 end

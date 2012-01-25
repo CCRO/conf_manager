@@ -4,7 +4,6 @@ class DashboardController < ApplicationController
   
   def index
     @contacts = Contact.all
-    @conferences = Conference.all
   end
   
   def update_conference_list
@@ -42,8 +41,6 @@ class DashboardController < ApplicationController
         format.html  {render :layout => false}
     end
   end
-
-
 
   def update_call_list
       #create client
@@ -87,5 +84,4 @@ class DashboardController < ApplicationController
       end
   end
   
-
 end
