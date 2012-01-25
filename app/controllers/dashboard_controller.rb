@@ -6,6 +6,10 @@ class DashboardController < ApplicationController
     @contacts = Contact.all
   end
   
+  def send_text_invite
+
+  end
+  
   def update_conference_list
     #create client
     client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)

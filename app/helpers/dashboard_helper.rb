@@ -21,4 +21,11 @@ module DashboardHelper
     return pinstr = Conference.where("confname = ?", conf).first.pin
   end
   
+  def invite_by_call(conf)
+  end
+  
+  def invite_by_txt(conf)
+    link_to "Text", :controller => 'dashboard', :action => 'send_text_invite', :conf => conf
+  end
+  
 end
