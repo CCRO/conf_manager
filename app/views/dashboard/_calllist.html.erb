@@ -1,18 +1,12 @@
 <h3>Active Calls (<%=@call_count%>)</h3>       
-
-  <% @call_list.each do |call| %>
-
-		<button class="btn primary_phone">
-			<% if call.caller_name.nil? or call.caller_name.empty? %>
-				<p>Uknown Caller</p>
-			<% else %>
-				<p>call_caller_name.to_s.capitalize </p>
-			<% end %>
-			<p>From:<%= call.from %></p>
-			<p>To:<%= call.to %></p>
-			<p>Direction: <%= call.direction %></p>
-			<p>Duration: </p>
-		</button>
-		<br />
-
-  <% end %>
+<% @call_list.each do |call| %>
+	<button class="btn primary_phone">
+		<% if call.caller_name.nil? or call.caller_name.empty? %>
+			<p>Uknown Caller</p>
+		<% else %>
+			<p>call.caller_name.to_s.capitalize </p>
+		<% end %>
+		<p>From:<%= call.from %></p>
+		<p>To:<%= call.to %></p>
+	</button>
+<% end %>

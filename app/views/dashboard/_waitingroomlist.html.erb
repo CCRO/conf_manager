@@ -1,18 +1,13 @@
 <h3>Waiting Room (<%=@wait_count%>)</h3>       
-<p><%= @conference_sid_in_use %></p>
-<ul>
-  <% @waiting_participants.each do |call| %>
-	<li>
+
+<% @waiting_participants.each do |call| %>
+	<button class="btn primary_phone">
 		<% if call.caller_name.nil? or call.caller_name.empty? %>
 			<p>Uknown Caller</p>
 		<% else %>
-			<p><%= call_caller_name.to_s.capitalize %></p>
+			<p>call.caller_name.to_s.capitalize </p>
 		<% end %>
 		<p>From:<%= call.from %></p>
 		<p>To:<%= call.to %></p>
-		<p>Direction: <%= call.direction %></p>
-		<p>Duration: </p>
-		<hr></hr>	
-	</li>
-  <% end %>
-</ul>
+	</button>
+<% end %>
