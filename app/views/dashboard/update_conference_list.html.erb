@@ -6,9 +6,9 @@
 		<li>
 			<% @active_conf.each do |conf| %>
 			
-				<%= conf.confname %>
-				<a href="#" rel="popover" title="<%= conf.confname %>" data-content="XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX">Participants(<%= @participants_hash[conf.confname].count %>)</a>, 
-				Guest PIN: <%= conf.pin %>, 
+				<%= conf %>
+				<a href="#" rel="popover" title="<%= conf %>" data-content="XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX">Participants(<%= @participants_hash[conf].count %>)</a>, 
+				Guest PIN: ##### <%#=  %>, 
 				Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a> <br/> 
 				Notes:_________________________________________________________________
 				
@@ -25,7 +25,7 @@
 		<li>
 			<% @empty_conf.each do |conf| %>
 				
-				<%= conf.confname %>, Set Guest Pin ____, Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a>
+				<%= conf %>, Set Guest Pin ____, Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a>
 
 			<% end %>
 		</li>
