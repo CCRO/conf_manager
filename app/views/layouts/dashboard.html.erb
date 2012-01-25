@@ -33,19 +33,18 @@
   	-->
   	
 	<!-- Jquery and bootstrap Libraries -->
-	<script src="http://code.jquery.com/jquery-latest.js"></script> 
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+	<!--><script src="http://code.jquery.com/jquery-latest.js"></script> --> 
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 	<!-- <script src="/js/bootstrap-twipsy.js"></script>
 	<script src="/js/bootstrap-popover.js"></script>
 	-->
 	
-	<!-- -->
-	<script type="text/javascript">
-		$( init );
- 
-		function init() {
-  			$('.makeMeDraggable').draggable({ revert: true });
-		}
+	<!-- draggable stuff -->
+	<script>
+		$(function() {
+		$( ".draggable" ).draggable({ revert: true });
+		});
 	</script>
 	
 	

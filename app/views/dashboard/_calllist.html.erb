@@ -1,6 +1,6 @@
 <h3>Active Calls (<%=@call_count%>)</h3>       
 <% @call_list.each do |call| %>
-	<button class="btn primary_phone makeMeDraggable">
+	<button class="btn primary_phone ui-widget-content">
 		<p><%= get_caller_name(call) %></p>
 		<p>From:<%= call.from %></p>
 		<p>To:<%= call.to %></p>
