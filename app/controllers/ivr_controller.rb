@@ -20,8 +20,15 @@ class IvrController < ApplicationController
     
     #if 2 was pressed
     if params['Digits'] == '2'
-      #go to conference_hold
+      #go to contact info
       redirect_to :action => 'contact_info'
+      return
+    end
+    
+    #if 3 was pressed
+    if params['Digits'] == '3'
+      #go to address
+      redirect_to :action => 'address'
       return
     end
     
@@ -34,6 +41,13 @@ class IvrController < ApplicationController
   def contact_info 
     @redirect_to = BASE_URL + '/ivr/index'
     render :action => "contact_info.xml.builder", :layout => false 
+  end
+  
+  #perfect
+  #says address then redirects to the ivr root 
+  def address 
+    @redirect_to = BASE_URL + '/ivr/index'
+    render :action => "address.xml.builder", :layout => false 
   end
   
   #asks for pin, then posts to conference Join

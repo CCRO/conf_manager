@@ -17,6 +17,7 @@ ConfManager::Application.routes.draw do
   post "ivr/index"
   post "ivr/handle_user_input_from_ivr"
   post "ivr/contact_info"
+  post "ivr/address"
   
   post "ivr/conference_hold"
   post "ivr/conference_join"
