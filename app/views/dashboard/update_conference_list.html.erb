@@ -1,33 +1,27 @@
 <% if @active_conf.empty? %>
-	<h3>Active Conference Groups: None</h3>
+	<h3>Active Conferences: None</h3>
 <% else %>
-	<h3>Active Conference Groups: </h3>
+	<h3>Active Conferences: </h3>
 	<ul>
-		<li>
-			<% @active_conf.each do |conf| %>
-			
+		<% @active_conf.each do |conf| %>
+			<li>
 				<%= conf %>
 				<a href="#" rel="popover" title="<%= conf %>" data-content="XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX">Participants(<%= @participants_hash[conf].count %>)</a>, 
 				Guest PIN: ##### <%#=  %>, 
 				Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a> <br/> 
 				Notes:_________________________________________________________________
-				
-			<% end %>
-		</li>
+			</li>	
+		<% end %>
 	</ul>
 <% end %>
 
 <% if @empty_conf.empty? %>
-	<h3>Available Conference Lines: None</h3>
+	<h3>Available Conferences: None</h3>
 <% else %>
-	<h3>Available Conference Lines: </h3>
+	<h3>Available Conferences: </h3>
 	<ul>
-		<li>
 			<% @empty_conf.each do |conf| %>
-				
-				<%= conf %>, Set Guest Pin ____, Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a>
-
+				<li><%= conf %>, Set Guest Pin ____, Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></li>
 			<% end %>
-		</li>
 	</ul>
 <% end %>
