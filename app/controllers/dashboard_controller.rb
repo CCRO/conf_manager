@@ -20,6 +20,22 @@ class DashboardController < ApplicationController
     end
   end
   
+  def hangup_call
+    sid = params[:sid]
+    
+    if sid.nil?
+      return
+    end
+    
+    begin
+      client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
+      url = BASE_URL + '/ivr/hangup'
+      client.account.calls.get(sid).update({:url => url})
+    end
+
+  end
+  
+  
   def update_conference_list
     #create client
     client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)

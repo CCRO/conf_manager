@@ -17,6 +17,12 @@ module DashboardHelper
     return callerstr    
   end #end get_caller_name(call)
   
+  def link_to_hangup_call(sid)
+    link_to image_tag("redx.png", :border=>0), :controller => 'dashboard', :action => 'show', :sid => sid, :style => "float: right;" %>
+  end
+  
+  
+  
   def get_conf_pin(conf)
     return pinstr = Conference.where("confname = ?", conf).first.pin
   end

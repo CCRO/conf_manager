@@ -13,7 +13,7 @@
 	
 	<div id="C<%=call.sid%>" class="ui-widget-content">
 		<div class="btn primary_phone" style="width: 150px">
-			<p><%= get_caller_name(call) %><img src="redx.png" style="float: right;"/></p>
+			<p><%= get_caller_name(call) %> <%= link_to_hangup_call(call.sid) %></p>
 			<p>From:<%= call.from %></p>
 			<p>To:<%= call.to %></p>
 		</div>
