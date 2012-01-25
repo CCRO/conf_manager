@@ -19,8 +19,8 @@
 				$('.conference_list_items').html(data);
 				// And restart the timer.
 				window.setTimeout(replace_conference_list, 2000);
-			}//,
-			//failure: alert("ajax failed to get")
+			},
+			failure: alert("Failed to get the updated conference list")
 		});
 	}
 	replace_conference_list();
