@@ -1,9 +1,19 @@
 <div class="sidebar">
 	
-	<div class="well">
-		<div class="waiting_room_list_items">
-	    </div> <!--  end .waiting_list_items-->	
-    </div><!--end .well-->
+	<script>
+	function handleDropEvent( event, ui ) {
+	  		var draggable = ui.draggable;
+	  		var sid = draggable.attr('id').substring(1)
+	  		alert( 'The call with SID: ' + sid + ' was dropped onto me!' );
+		}
+	</script>
+	<div id="makeMeDroppable" style="">
+		<div class="well">
+			<div class="waiting_room_list_items">
+		    </div> <!--  end .waiting_list_items-->	
+	    </div><!--end .well-->
+	</div><!-- end #makeMeDroppable-->
+	
 	
 	<div class="well">
 			<!-- Insert the call list here-->
