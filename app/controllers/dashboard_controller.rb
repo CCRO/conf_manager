@@ -31,7 +31,7 @@ class DashboardController < ApplicationController
     @empty_conf = Array.new
     
     @conferences.each do |conference|
-      if @participants_hash[conference.confname].count < 1
+      if @participants_hash[conference.confname].nil? or @participants_hash[conference.confname].empty?
          @empty_conf << conference.confname
       else
          @active_conf << conference.confname

@@ -1,0 +1,32 @@
+<% if @active_conf.empty? %>
+	<h3>Active Conference Groups: None</h3>
+<% else %>
+	<h3>Active Conference Groups: </h3>
+	<ul>
+		<li>
+			<% @active_conf.each do |conf| %>
+				<%= render 'dashboard/activeconference'%>
+			<% end %>
+		</li>
+	</ul>
+<% end %>
+
+<% if @empty_conf.empty? %>
+	<h3>Available Conference Lines: None</h3>
+<% else %>
+	<h3>Available Conference Lines: </h3>
+	<ul>
+		<li>
+			<% @active_conf.each do |conf| %>
+				<%= render 'dashboard/emptyconference'%>
+			<% end %>
+		</li>
+	</ul>
+<% end %>
+	
+
+	<ul>
+	    	<li>Conference A, Set Guest Pin ____, Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></li>
+	    	<li>Conference B, Set Guest Pin ____, <a href="#">Invite Contacts</a></li>
+	    	<li>Conference C, Set Guest Pin ____, <a href="#">Invite Contacts</a></li>
+	</ul> 
