@@ -1,13 +1,14 @@
 <div class="sidebar">
 	
 	<script>
-	function handleDropEvent( event, ui ) {
+	function handleDropEventIntoWaitingRoom( event, ui ) {
 	  		var draggable = ui.draggable;
+	  		//strips off the first character
 	  		var sid = draggable.attr('id').substring(1)
 	  		alert( 'The call with SID: ' + sid + ' was dropped onto me!' );
 		}
 	</script>
-	<div id="makeMeDroppable" style="">
+	<div id="dropintowaitingroom">
 		<div class="well">
 			<div class="waiting_room_list_items">
 		    </div> <!--  end .waiting_list_items-->	
