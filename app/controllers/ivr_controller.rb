@@ -82,7 +82,7 @@ class IvrController < ApplicationController
  
     #checks if pin exists in the list of conferences
     conf_to_join = Conference.where("pin = ?", params['Digits'] ).first
-    if conf_to_join.nil
+    if conf_to_join.nil?
       redirect_to :action => "conference_join_failed"
       return 
     else
