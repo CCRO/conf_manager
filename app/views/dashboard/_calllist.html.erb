@@ -4,18 +4,16 @@
 
 	<script type="text/javascript">
  
-	$( init );
- 
-	function init() {
+ 	$(function() {
   		$( "#C<%=call.sid%>" ).draggable({ revert: true, helper: clone });
   		$('#makeMeDroppable').droppable( {
-    	drop: handleDropEvent
+    		drop: handleDropEvent
   		});
 	}
  
 	function handleDropEvent( event, ui ) {
   		var draggable = ui.draggable;
-  		alert( 'The square with ID "' + draggable.attr('id') + '" was dropped onto me!' );
+  		alert( 'The call with SID "' + draggable.attr('id') + '" was dropped onto me!' );
 	}
  
 	</script>
