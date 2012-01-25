@@ -4,10 +4,13 @@
 	function handleDropEventIntoWaitingRoom( event, ui ) {
 	  		var draggable = ui.draggable;
 	  		//strips off the first character
-	  		var sid = draggable.attr('id').substring(1)
-	  		alert( 'The call with SID: ' + sid + ' was dropped onto me!' );
+	  		var sid = draggable.attr('id').substring(1);
+	  		var url = '<%=BASE_URL%>' + '/dashboard/drop_into_waiting_room/?sid=' + sid
+	  		$.post(url, function(data) {});
+	  		alert( 'The call with SID: ' + sid + ' was dropped onto ' + url );
 		}
 	</script>
+	
 	<div id="dropintowaitingroom">
 		<div class="well">
 			<div class="waiting_room_list_items">

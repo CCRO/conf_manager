@@ -6,8 +6,18 @@ class DashboardController < ApplicationController
     @contacts = Contact.all
   end
   
-  def send_text_invite
-
+  def drop_into_waiting_room
+    sid = params[:sid]
+    
+    if sid.nil?
+      return
+    end
+    
+    begin
+      client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
+      url = BASE_URL + '/ivr/conference_waiting_room'
+      client.account.calls.get(sid).update({:url => url})
+    end
   end
   
   def update_conference_list

@@ -7,6 +7,8 @@ ConfManager::Application.routes.draw do
   get "dashboard/update_call_list"
   get "dashboard/update_waiting_room_list"
   get "dashboard/update_conference_list"
+  
+  post "dashboard/drop_into_waiting_room"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
