@@ -5,7 +5,6 @@
   
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
-  <%#= javascript_include_tag "bootstrap-twipsy", "bootstrap-popover" %>
   
   <%= csrf_meta_tags %>
   
@@ -18,7 +17,7 @@
 	    <![endif]-->
 
     <!-- Le styles -->
-    <!-- ><link href="/styles/bootstrap_custom.css" rel="stylesheet"> -->
+    <!-- <link href="/styles/bootstrap_custom.css" rel="stylesheet"> -->
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -33,10 +32,11 @@
   	-->
   	
 	<!-- Jquery and bootstrap Libraries -->
-	<!--><script src="http://code.jquery.com/jquery-latest.js"></script> --> 
+	<!--<script src="http://code.jquery.com/jquery-latest.js"></script> --> 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-	<!-- <script src="/js/bootstrap-twipsy.js"></script>
+	<!-- 
+	<script src="/js/bootstrap-twipsy.js"></script>
 	<script src="/js/bootstrap-popover.js"></script>
 	-->
 	
@@ -47,13 +47,8 @@
 		$( "#draggable2" ).draggable({ revert: true, helper: "clone" });
 		});
 	</script>
-	
-	<style>
-	#draggable, #draggable2 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
-	</style>
-	
-	
-	<!-- PopOver Functionality for a[rel=popover]-->	
+		
+	<!-- PopOver Functionality for a[rel=popover] -->	
 	<script>
 		$(function () {
 		$("a[rel=popover]").popover({
