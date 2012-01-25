@@ -2,12 +2,24 @@
 
 <% @call_list.each do |call| %>
 
-	<script>
-		$(function() {
-			$( "#C<%=call.sid%>" ).draggable({ revert: true });
-		});
+	<script type="text/javascript">
+ 
+	$( init );
+ 
+	function init() {
+  		$( "#C<%=call.sid%>" ).draggable({ revert: true, helper: clone });
+  		$('#makeMeDroppable').droppable( {
+    	drop: handleDropEvent
+  		});
+	}
+ 
+	function handleDropEvent( event, ui ) {
+  		var draggable = ui.draggable;
+  		alert( 'The square with ID "' + draggable.attr('id') + '" was dropped onto me!' );
+	}
+ 
 	</script>
-
+	
 	<div id="C<%=call.sid%>" class="ui-widget-content">
 		<div class="btn primary_phone" style="width: 150px">
 			<p><%= get_caller_name(call) %></p>
