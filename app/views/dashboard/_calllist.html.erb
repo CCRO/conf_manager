@@ -1,15 +1,18 @@
 <h3>Active Calls (<%=@call_count%>)</h3>       
 <% @call_list.each do |call| %>
+
+	<script>
+		$(function() {
+			$( "#<%=call.sid%>" ).draggable();
+		});
+	</script>
+
 	<div id="<%=call.sid%>" class="ui-widget-content">
-		<div class="btn primary_phone" style="width: 160px">
+		<div class="btn primary_phone" style="width: 140px">
 			<p><%= get_caller_name(call) %></p>
 			<p>From:<%= call.from %></p>
 			<p>To:<%= call.to %></p>
 		</div>
 	</div>
-	<script>
-		$(function() {
-		$( "#<%=call.sid%>" ).draggable({ revert: true, helper: "clone" });
-		});
-	</script>
+
 <% end %>
