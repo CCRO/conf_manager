@@ -19,6 +19,20 @@
 	<h3>Available Conferences: None</h3>
 <% else %>
 	<h3>Available Conferences: </h3>
+	<table>
+		<tr>
+			<% @empty_conf.each do |conf| %>
+				<td><%= conf %></td>
+				<td>PIN: <%= get_conf_pin(conf) %></td>
+				<td>Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></td>
+			<% end %>
+		</tr>
+		<tr>
+			
+		</tr>
+	</table>
+	
+	
 	<ul>
 			<% @empty_conf.each do |conf| %>
 				<li><%= conf %>, PIN: <%= get_conf_pin(conf) %>, Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></li>
