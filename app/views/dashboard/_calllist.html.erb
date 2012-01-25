@@ -13,8 +13,7 @@
 	
 	<div id="C<%=call.sid%>" class="ui-widget-content">
 		<div class="btn primary_phone" style="width: 150px">
-			<img src="redx.png" />
-			<p><%= get_caller_name(call) %></p>
+			<p><%= get_caller_name(call) %><img src="redx.png" style="float: right;"/></p>
 			<p>From:<%= call.from %></p>
 			<p>To:<%= call.to %></p>
 		</div>
