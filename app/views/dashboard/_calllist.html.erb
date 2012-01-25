@@ -2,11 +2,11 @@
 
 <% @call_list.each do |call| %>
 
-	<script type="text/javascript">
+	<script>
  
  	$(function() {
   		$( "#C<%=call.sid%>" ).draggable({ revert: true });
-  		$('#makeMeDroppable').droppable( {
+  		$("#makeMeDroppable").droppable({
     		drop: handleDropEvent
   		});
 	}
