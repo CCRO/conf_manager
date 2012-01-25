@@ -10,6 +10,7 @@ ConfManager::Application.routes.draw do
   
   post "dashboard/drop_into_waiting_room"
   post "dashboard/hangup_call"
+  post "dashboard/hangup_call_immediate"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -22,6 +23,7 @@ ConfManager::Application.routes.draw do
   post "ivr/contact_info"
   post "ivr/address"
   post "ivr/hangup"
+  post "ivr/hangup_immediate"
   
   post "ivr/conference_hold"
   post "ivr/conference_join"

@@ -104,5 +104,9 @@ class IvrController < ApplicationController
   def hangup
      render :action => "hangup.xml.builder", :layout => false
   end
+  
+  def hangup_immediate
+     render :action => "hangup_immediate.xml.builder", :layout => false
+  end
 
 end
