@@ -18,7 +18,7 @@ module DashboardHelper
   end #end get_caller_name(call)
   
   def link_to_hangup_call(sid)
-    js = 'var url = "' + BASE_URL + '/dashboard/hangup_call/?sid=' + sid + '"; $.post(url); var tmp =  $(this).parent().parent().attr("class"); alert(tmp)'
+    js = 'var url = "' + BASE_URL + '/dashboard/hangup_call/?sid=' + sid + '"; $.post(url); $(this).parent().parent().attr("class") = "btn hangup_phone";'
     link_to_function image_tag('/redx.png', :style => "float: right;" ), js, :confirm => "Hang up call?"
   end
 
