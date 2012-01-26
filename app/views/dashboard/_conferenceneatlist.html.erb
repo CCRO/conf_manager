@@ -1,27 +1,29 @@
 <div class="hero-unit">
-	
-	<div class="conference_list_items">
-		<h3>Conferences: </h3>
-		<table style="width: 520px;">
-		<tr>
-			<td>Name</td>
-			<td>Pin</td>
-			<td></td>
-		</tr>
-		<% @conferences.each do |conf| %>
-			<tr>
-				<td><%= conf.confname %></td>
-				<td><%= get_conf_pin(conf.confname) %></td>
-				<td>Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></td>
-			</tr>
-		<% end %>
-	</table>
+	<div class="row">
+		<div class="span6">
+			<div class="conference_list_items">
+				<h3>Conferences: </h3>
+					<table style="width: 520px;">
+					<tr>
+						<td>Name</td>
+						<td>Pin</td>
+						<td></td>
+					</tr>
+					<% @conferences.each do |conf| %>
+						<tr>
+							<td><%= conf.confname %></td>
+							<td><%= get_conf_pin(conf.confname) %></td>
+							<td>Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></td>
+						</tr>
+					<% end %>
+					</table>
+			</div> <!--  end .conference_list_items-->	
+		</div><!-- end span6 -->
 		
-	</div> <!--  end .conference_list_items-->	
-	
-	<div class="span10">
-		<p>Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-		<div class="participant_list_items">
-		</div> <!--  end .participant_list_items-->	
-	</div>
+		<div class="span10">
+			<p>Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+			<div class="participant_list_items">
+			</div> <!--  end .participant_list_items-->	
+		</div><!-- end span10-->
+	</div><!-- end row-->
 </div> <!--end hero-unit-->
