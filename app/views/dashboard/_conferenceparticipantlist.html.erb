@@ -38,7 +38,6 @@
 		var tmp = $("img[src$='/greenarrow.png']").attr("id");
 		//alert(tmp);
 		var urltogo = "<%=(BASE_URL + '/dashboard/update_conference_participant_list?conf_name=').to_s%>" + tmp;
-		//$(".participant_list_items").html("<h3>Loading Participants...</h3>");
 		$.ajax({
 			url: urltogo,
 			type: 'get',
@@ -60,7 +59,7 @@
 	        //$(".participant_list_items").("h3").append("...loading");
 	        $(".select-conf").attr("src","/bluearrow.png");
 	        $(id_of_clicked).attr("src","/greenarrow.png");
-	        
+	        $("h3 > .participant_list_items").append("...loading");
 	        //alert('url to go' + urltogo);
 	        //alert(id_of_clicked);
 	        //$.ajax({
