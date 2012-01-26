@@ -275,6 +275,9 @@ a:hover {
 .span3 {
   width: 160px;
 }
+.span3-5 {
+  width: 190px;
+}
 .span4 {
   width: 220px;
 }

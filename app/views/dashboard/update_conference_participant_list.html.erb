@@ -2,7 +2,7 @@
 
 <div class = "row">
 	<% @participants.each_with_index do |call,index| %>
-		<div class="span4">
+		<div class="span3-5">
 			<script>
 				$(function() {
 					$( "#P<%=call.sid%>" ).draggable({ revert: true });
