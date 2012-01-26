@@ -1,0 +1,39 @@
+<h3>Participants in <%= @conf_name %> (<%=@part_count%>)</h3>
+
+<% @participants.each do |call| %>
+
+	<script>
+		$(function() {
+			$( "#P<%=call.sid%>" ).draggable({ revert: true });
+		});
+	</script>
+
+	<div id="P<%=call.sid%>" class="ui-widget-content">
+		<div class="btn primary_phone" style="width: 150px">
+			<p><%= get_caller_name(call) %> <%= link_to_hangup_call(call.sid) %> </p>
+			<p>From:<%= call.from %></p>
+			<p>To:<%= call.to %> <%= link_to_toggle_mute_call(call.sid) %></p>
+		</div>
+	</div>
+	
+<% end %>
+
+<script>
+		//Script that updates the confernce list every few seconds
+		function replace_conference_neat_list() {
+		// Do a $.ajax call to your server.
+		$.ajax({
+			url: '/dashboard/update_conference_neat_list',
+			type: 'get',
+			dateType: 'html',
+			success: function(data) {
+				// Replace the list with the new one.
+				$('.conference_list_items').html(data);
+				// And restart the timer.
+				window.setTimeout(replace_conference_neat_list, 3000);
+			}//,
+			//failure: alert("Failed to get the updated conference list")
+		});
+	}
+	//replace_conference_neat_list();
+</script>

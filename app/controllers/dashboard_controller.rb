@@ -79,7 +79,39 @@ class DashboardController < ApplicationController
     render :nothing => true
   end
   
-  
+  def update_conference_neat_list
+    #pull conf name from params
+    @conf_name = params[:conf_name].to_s.gsub('-',' ')
+    
+    #confirm not nil
+    if conf_name.nil?
+      return
+    end
+    
+    #create client
+    client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
+   
+    #pull conference list, for some reason there are usually more than one of these
+    conf_list = client.account.conferences.list(:FriendlyName => @conf_name)
+    
+    #array to store the participants 
+    @participants = Array.new
+    
+    #iterate through the conference list building the participant array
+    conf_list.each do |conf|
+        participants = conf.participants
+        participants.list.each do |participant|
+          @participants << client.account.calls.get(participant.call_sid)
+        end
+    end
+    
+    @part_count = @participants.count
+
+    #render default update_conference_neat_list
+    respond_to do |format|
+        format.html  {render :layout => false}
+    end
+  end
   
   def update_conference_list
     #create client

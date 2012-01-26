@@ -19,13 +19,13 @@ module DashboardHelper
   
   def link_to_hangup_call(sid)
     js = '$(this).parent().parent().attr("class","btn hangup_phone"); var url = "' + BASE_URL + '/dashboard/hangup_call_immediate/?sid=' + sid + '"; $.post(url);'
-    link_to_function image_tag('/redx.png', :style => "float: right; margin-right: -15px;" ), js, :confirm => "Hang up call?"
+    link_to_function image_tag('/redx.png', :style => "float: right; margin-right: -10px;" ), js, :confirm => "Hang up call?"
   end
   
   def link_to_toggle_mute_call(sid)
     #check if caller is muted
     js = 'var tmp = $(this).parent().parent().attr("style");alert(tmp); var url = "' + BASE_URL + '/dashboard/mute_call/?sid=' + sid + '"; $.post(url);'
-    link_to_function image_tag('/microphone.png', :style => "float: right; background: green; margin-right: -15px;" ), js
+    link_to_function image_tag('/microphone.png', :style => "float: right; background: green; margin-right: -10px;" ), js
   end
   
   def get_conf_pin(conf)

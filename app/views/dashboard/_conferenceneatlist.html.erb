@@ -8,23 +8,47 @@
 						<td>Name</td>
 						<td>Pin</td>
 						<td></td>
+						<td>Select</td>
 					</tr>
 					<% @conferences.each do |conf| %>
 						<tr>
 							<td><%= conf.confname %></td>
 							<td><%= get_conf_pin(conf.confname) %></td>
 							<td>Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></td>
+							<%conf_css_safe = conf.confname.gsub(' ','-') %>
+							<td><img id="<%= conf_css_safe %>" class="select-conf" src="/bluearrow.png" style="margin-right: -10px;" ></td>
 						</tr>
 					<% end %>
 					</table>
 			</div> <!--  end .conference_list_items-->	
 		</div><!-- end span10 -->
 		
-		<div class="span10">
+		<div class="span10" style="border: 1px solid black; padding-left: 5px; padding-right: 5px;">
 			<div class="participant_list_items">
-				<h3>Participants:</h3>
-				<p>Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+				<h3>Participants</h3>
 			</div> <!--  end .participant_list_items-->	
 		</div><!-- end span10-->
 	</div><!-- end row-->
 </div> <!--end hero-unit-->
+
+<script>
+	$(document).ready(function() {
+	    $(".select-conf").click(function(event) {
+	        id_of_clicked = '#' + event.target.id;
+	        //alert(id_of_clicked);
+	        $(".select-conf").attr("src","/bluearrow.png");
+	        $(id_of_clicked).attr("src","/greenarrow.png");
+	        $.ajax({
+				url: '/dashboard/update_conference_neat_list',
+				type: 'get',
+				dateType: 'html',
+				success: function(data) {
+					// pull the conference initial list
+					$('.conference_list_items').html(data);
+					}
+			});
+	    });
+	});
+</script>
+
+
