@@ -1119,6 +1119,11 @@ table {
   font-size: 13px;
   border-collapse: collapse;
 }
+
+table tr:hover {
+	background-color: #BFBFBF; 
+}
+
 table th, table td {
   padding: 10px 10px 9px;
   line-height: 18px;
