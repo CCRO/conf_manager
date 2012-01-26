@@ -35,7 +35,7 @@
 	$(document).ready(function() {
 	    $(".select-conf").click(function(event) {
 	        id_of_clicked = '#' + event.target.id;
-	        $(".participant_list_items").html("Loading");
+	        $(".participant_list_items").html("<h3>Loading Participants</h3>");
 	        $(".select-conf").attr("src","/bluearrow.png");
 	        $(id_of_clicked).attr("src","/greenarrow.png");
 	        //alert(url_togo);
