@@ -35,7 +35,6 @@
 	$(document).ready(function() {
 	    $(".select-conf").click(function(event) {
 	        id_of_clicked = '#' + event.target.id;
-	        url_togo = <%= BASE_URL + '/dashboard/update_conference_neat_list/?conf_name=' %> + event.target.id;
 	        //$(".conference_list_items").html("Loading");
 	        //alert(url_togo);
 	        alert(id_of_clicked);
