@@ -35,11 +35,12 @@
 	$(document).ready(function() {
 	    $(".select-conf").click(function(event) {
 	        id_of_clicked = '#' + event.target.id;
-	        $(".participant_list_items").html("<h3>Loading Participants</h3>");
+	        $(".participant_list_items").html("<h3>Loading Participants...</h3>");
 	        $(".select-conf").attr("src","/bluearrow.png");
 	        $(id_of_clicked).attr("src","/greenarrow.png");
-	        //alert(url_togo);
-	        alert(id_of_clicked);
+	        var url_togo = <%= BASE_URL + '/dashboard/update_conference_neat_list/?conf_name=' %> + event.target.id;
+	        alert(url_togo);
+	        //alert(id_of_clicked);
 	        //$.ajax({
 				//url: url_togo,
 				//type: 'get',
