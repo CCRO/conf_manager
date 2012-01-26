@@ -35,11 +35,11 @@
 	$(document).ready(function() {
 	    $(".select-conf").click(function(event) {
 	        id_of_clicked = '#' + event.target.id;
-	        //$(".conference_list_items").html("Loading");
-	        //alert(url_togo);
-	        alert(id_of_clicked);
+	        $(".conference_list_items").html("Loading");
 	        $(".select-conf").attr("src","/bluearrow.png");
 	        $(id_of_clicked).attr("src","/greenarrow.png");
+	        //alert(url_togo);
+	        alert(id_of_clicked);
 	        //$.ajax({
 				//url: url_togo,
 				//type: 'get',
