@@ -15,7 +15,7 @@
 		<div class="btn primary_phone" style="width: 150px">
 			<p><%= get_caller_name(call) %> <%= link_to_hangup_call(call.sid) %> </p>
 			<p>From:<%= call.from %></p>
-			<p>To:<%= call.to %></p>
+			<p>To:<%= call.to %> <%= link_to_toggle_mute_call(call.sid) %></p>
 		</div>
 	</div>
 

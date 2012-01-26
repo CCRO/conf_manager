@@ -11,6 +11,8 @@ ConfManager::Application.routes.draw do
   post "dashboard/drop_into_waiting_room"
   post "dashboard/hangup_call"
   post "dashboard/hangup_call_immediate"
+  post "dashboard/mute_call"
+  post "dashboard/unmute_call"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

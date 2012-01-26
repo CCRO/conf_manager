@@ -50,6 +50,34 @@ class DashboardController < ApplicationController
     render :nothing => true
   end
   
+  def mute_call
+    sid = params[:sid]
+    
+    if sid.nil?
+      return
+    end
+    
+    begin
+      client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
+      client.account.calls.get(sid).update({:muted => 'true'})
+    end
+    render :nothing => true
+  end
+  
+  def unmute_call
+    sid = params[:sid]
+    
+    if sid.nil?
+      return
+    end
+    
+    begin
+      client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
+      client.account.calls.get(sid).update({:muted => 'false'})
+    end
+    render :nothing => true
+  end
+  
   
   
   def update_conference_list

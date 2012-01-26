@@ -21,7 +21,13 @@ module DashboardHelper
     js = '$(this).parent().parent().attr("class","btn hangup_phone"); var url = "' + BASE_URL + '/dashboard/hangup_call_immediate/?sid=' + sid + '"; $.post(url);'
     link_to_function image_tag('/redx.png', :style => "float: right;" ), js, :confirm => "Hang up call?"
   end
-
+  
+  def link_to_toggle_mute_call(sid)
+    #check if caller is muted
+    js = 'var tmp = $(this).parent().parent().attr("style");alert(tmp); var url = "' + BASE_URL + '/dashboard/mute_call/?sid=' + sid + '"; $.post(url);'
+    link_to_function image_tag('/microphone.png', :style => "float: right; background: green;" ), js
+  end
+  
   def get_conf_pin(conf)
     return pinstr = Conference.where("confname = ?", conf).first.pin
   end
