@@ -38,10 +38,10 @@
 				// Replace the list with the new one.
 				$('.participant_list_items').html(data);
 				// And restart the timer.
-				window.setTimeout(replace_conference_participant_list, 2000);
+				window.setTimeout(replace_conference_participant_list, 1000);
 			}//,
 			//failure: alert("Failed to get the updated conference list")
 		});
 	}
-	$(replace_conference_participant_list).delay(2000);
+	$(replace_conference_participant_list).delay(1000);
 </script>

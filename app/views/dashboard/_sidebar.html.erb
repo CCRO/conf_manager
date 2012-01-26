@@ -38,7 +38,7 @@
 			// Replace the list with the new one.
 			$('.waiting_room_list_items').html(data);
 			// And restart the timer.
-			window.setTimeout(replace_waiting_room_list, 1500);
+			window.setTimeout(replace_waiting_room_list, 1000);
 		}//,
 		//failure: alert("ajax failed to get")
 	});
@@ -58,7 +58,7 @@ replace_waiting_room_list();
 			// Replace the list with the new one.
 			$('.call_list_items').html(data);
 			// And restart the timer.
-			window.setTimeout(replace_call_list, 1500);
+			window.setTimeout(replace_call_list, 1000);
 		}//,
 		//failure: alert("ajax failed to get")
 	});
