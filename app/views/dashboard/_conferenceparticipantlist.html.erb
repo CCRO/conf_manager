@@ -39,7 +39,7 @@
 		
 		//find out which button is selected.
 		var tmp = $("img[src$='/greenarrow.png']").attr("id");
-		alert(tmp);
+		//alert(tmp);
 		var urltogo = "<%=(BASE_URL + '/dashboard/update_conference_participant_list?conf_name=').to_s%>" + tmp;
 		
 		$.ajax({
