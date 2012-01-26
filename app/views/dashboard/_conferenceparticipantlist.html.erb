@@ -32,24 +32,45 @@
 
 
 <script>
+	var urltogo = "";
+	
+	//Script that updates the participant list every few seconds
+	function replace_conference_participant_list() {
+		// Do a $.ajax call to your server.
+		$.ajax({
+			url: urltogo,
+			type: 'get',
+			dateType: 'html',
+			success: function(data) {
+				// Replace the list with the new one.
+				$('.participant_list_items').html(data);
+				// And restart the timer.
+				window.setTimeout(replace_conference_participant_list, 2000);
+			},
+			failure: alert("Failed to get the updated participant list from " + urltogo)
+		});
+	}
+		
+	//onclick change image selector, update url to pull from,  
 	$(document).ready(function() {
 	    $(".select-conf").click(function(event) {
 	        id_of_clicked = '#' + event.target.id;
 	        $(".participant_list_items").html("<h3>Loading Participants...</h3>");
 	        $(".select-conf").attr("src","/bluearrow.png");
 	        $(id_of_clicked).attr("src","/greenarrow.png");
-	        var urltogo = "<%=(BASE_URL + '/dashboard/update_conference_participant_list?conf_name=').to_s%>" + event.target.id;
+	        urltogo = "<%=(BASE_URL + '/dashboard/update_conference_participant_list?conf_name=').to_s%>" + event.target.id;
 	        //alert(urltogo);
 	        //alert(id_of_clicked);
-	        $.ajax({
-				url: urltogo,
-				type: 'get',
-				dateType: 'html',
-				success: function(data) {
+	        //$.ajax({
+				//url: urltogo,
+				//type: 'get',
+				//dateType: 'html',
+				//success: function(data) {
 					// pull the participant initial list
-					$(".participant_list_items").html(data);
-					}
-			});
+					//$(".participant_list_items").html(data);
+					//}
+			replace_conference_participant_list()
+			//});
 	    });
 	});
 </script>

@@ -25,23 +25,3 @@
 	
 <% end %>
 </div> <!-- end last row-->
-
-<script>
-		//Script that updates the conference list every few seconds
-		function replace_conference_participant_list() {
-		// Do a $.ajax call to your server.
-		$.ajax({
-			url: '/dashboard/update_conference_participant_list/?conf_name=<%=@conf_name_css_safe%>',
-			type: 'get',
-			dateType: 'html',
-			success: function(data) {
-				// Replace the list with the new one.
-				$('.participant_list_items').html(data);
-				// And restart the timer.
-				window.setTimeout(replace_conference_participant_list, 1000);
-			}//,
-			//failure: alert("Failed to get the updated conference list")
-		});
-	}
-	$(replace_conference_participant_list).delay(1000);
-</script>
