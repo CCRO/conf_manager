@@ -33,31 +33,37 @@
 
 <script>
 	//Script that updates the participant list every few seconds
-	function replace_conference_participant_list(urlrecieved) {
+	function replace_conference_participant_list() {
 		// Do a $.ajax call to your server.
 		//alert('url recieved' + urlrecieved);
+		
+		//find out which button is selected.
+		var tmp = $("img[src$='/greenarrow.png']").attr("id");
+		alert(tmp);
+		var urltogo = "<%=(BASE_URL + '/dashboard/update_conference_participant_list?conf_name=').to_s%>" + tmp;
+		
 		$.ajax({
-			url: urlrecieved,
+			url: urltogo,
 			type: 'get',
 			dateType: 'html',
 			success: function(data) {
 				// Replace the list with the new one.
 				$('.participant_list_items').html(data);
 				// And restart the timer.
-				window.setTimeout(replace_conference_participant_list(urlrecieved), 2000);
+				window.setTimeout(replace_conference_participant_list(), 2000);
 			}//,
 			//failure: alert("Failed to get the updated participant list from " + urlrecieved + '\r\n urltogo: ' + urltogo)
 		});
 	}
 		
-	//onclick change image selector, update url to pull from,  
+	//onclick change image selector 
 	$(document).ready(function() {
 	    $(".select-conf").click(function(event) {
 	        id_of_clicked = '#' + event.target.id;
 	        $(".participant_list_items").html("<h3>Loading Participants...</h3>");
 	        $(".select-conf").attr("src","/bluearrow.png");
 	        $(id_of_clicked).attr("src","/greenarrow.png");
-	        var urltogo = "<%=(BASE_URL + '/dashboard/update_conference_participant_list?conf_name=').to_s%>" + event.target.id;
+	        
 	        //alert('url to go' + urltogo);
 	        //alert(id_of_clicked);
 	        //$.ajax({
@@ -68,7 +74,7 @@
 					// pull the participant initial list
 					//$(".participant_list_items").html(data);
 					//}
-			replace_conference_participant_list(urltogo);
+			replace_conference_participant_list();
 			//});
 	    });
 	});
