@@ -84,7 +84,7 @@ class DashboardController < ApplicationController
     @conf_name = params[:conf_name].to_s.gsub('-',' ')
     
     #confirm not nil
-    if conf_name.nil?
+    if @conf_name.nil?
       return
     end
     
