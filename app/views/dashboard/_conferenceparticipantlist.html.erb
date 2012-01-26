@@ -23,7 +23,7 @@
 			</div> <!--  end .conference_list_items-->	
 		</div><!-- end span10 -->
 		
-		<div class="span10" style="border: 1px solid black; padding-left: 5px; padding-right: 5px;">
+		<div class="span8" style="border: 1px solid black; padding-left: 5px; padding-right: 5px;">
 			<div class="participant_list_items" style="margin-left: 30px;">
 				<h3>Participants</h3>
 			</div> <!--  end .participant_list_items-->	
@@ -46,7 +46,7 @@
 				// Replace the list with the new one.
 				$('.participant_list_items').html(data);
 				// And restart the timer.
-				window.setTimeout(replace_conference_participant_list(), 1000);
+				window.setTimeout(replace_conference_participant_list(), 2000);
 			}//,
 			//failure: alert("Failed to get the updated participant list from " + urlrecieved + '\r\n urltogo: ' + urltogo)
 		});
