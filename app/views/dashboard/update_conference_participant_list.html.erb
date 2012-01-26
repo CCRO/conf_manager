@@ -1,6 +1,7 @@
 <h3>Participants in <%= @conf_name %> (<%=@part_count%>)</h3>
 
-<% @participants.each do |call| %>
+<div class = "row">
+<% @participants.each_with_index do |call,index| %>
 
 	<script>
 		$(function() {
@@ -9,14 +10,21 @@
 	</script>
 
 	<div id="P<%=call.sid%>" class="ui-widget-content">
-		<div class="btn primary_phone" style="width: 150px">
+		<div class="btn primary_phone" style="width: 180px">
 			<p><%= get_caller_name(call) %> <%= link_to_hangup_call(call.sid) %> </p>
 			<p>From:<%= call.from %></p>
 			<p>To:<%= call.to %> <%= link_to_toggle_mute_call(call.sid) %></p>
 		</div>
 	</div>
 	
+	<!-- This sets 2 calls per row-->
+	<% if (index % 2) == 0 %>
+		</div><!-- end intermediate row-->
+		<div class="row">
+	<% end %>	
+	
 <% end %>
+</div> <!-- end last row-->
 
 <script>
 		//Script that updates the confernce list every few seconds
