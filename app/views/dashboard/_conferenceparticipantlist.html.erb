@@ -35,7 +35,7 @@
 	//Script that updates the participant list every few seconds
 	function replace_conference_participant_list(urlrecieved) {
 		// Do a $.ajax call to your server.
-		alert('url recieved' + urlrecieved)
+		//alert('url recieved' + urlrecieved)
 		$.ajax({
 			url: urlrecieved,
 			type: 'get',
@@ -58,7 +58,7 @@
 	        $(".select-conf").attr("src","/bluearrow.png");
 	        $(id_of_clicked).attr("src","/greenarrow.png");
 	        var urltogo = "<%=(BASE_URL + '/dashboard/update_conference_participant_list?conf_name=').to_s%>" + event.target.id;
-	        alert('url to go' + urltogo);
+	        //alert('url to go' + urltogo);
 	        //alert(id_of_clicked);
 	        //$.ajax({
 				//url: urltogo,
