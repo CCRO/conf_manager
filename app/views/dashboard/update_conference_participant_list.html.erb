@@ -23,7 +23,7 @@
 		function replace_participant_list() {
 		// Do a $.ajax call to your server.
 		$.ajax({
-			url: '/dashboard/update_conference_participant_list/?conf_name=<%=@confname.gsub(' ','-')%>',
+			url: '/dashboard/update_conference_participant_list/?conf_name=<%=@conf_name_css_safe%>',
 			type: 'get',
 			dateType: 'html',
 			success: function(data) {

@@ -38,7 +38,7 @@
 	        $(".participant_list_items").html("<h3>Loading Participants...</h3>");
 	        $(".select-conf").attr("src","/bluearrow.png");
 	        $(id_of_clicked).attr("src","/greenarrow.png");
-	        var urltogo = "<%=(BASE_URL + '/dashboard/update_conference_participant_list/?conf_name=').to_s%>" + event.target.id;
+	        var urltogo = "<%=(BASE_URL + '/dashboard/update_conference_participant_list?conf_name=').to_s%>" + event.target.id;
 	        //alert(urltogo);
 	        //alert(id_of_clicked);
 	        $.ajax({

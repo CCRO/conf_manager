@@ -82,6 +82,7 @@ class DashboardController < ApplicationController
   def update_conference_participant_list
     #pull conf name from params
     @conf_name = params[:conf_name].to_s.gsub('-',' ')
+    @conf_name_css_safe = params[:conf_name]
     
     #confirm not nil
     if @conf_name.nil?
