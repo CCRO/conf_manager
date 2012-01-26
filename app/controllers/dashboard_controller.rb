@@ -79,7 +79,7 @@ class DashboardController < ApplicationController
     render :nothing => true
   end
   
-  def update_conference_neat_list
+  def update_conference_participant_list
     #pull conf name from params
     @conf_name = params[:conf_name].to_s.gsub('-',' ')
     

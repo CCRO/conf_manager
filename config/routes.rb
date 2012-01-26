@@ -7,7 +7,7 @@ ConfManager::Application.routes.draw do
   get "dashboard/update_call_list"
   get "dashboard/update_waiting_room_list"
   get "dashboard/update_conference_list"
-  get "dashboard/update_conference_neat_list"
+  get "dashboard/update_conference_participant_list"
   
   post "dashboard/drop_into_waiting_room"
   post "dashboard/hangup_call"
