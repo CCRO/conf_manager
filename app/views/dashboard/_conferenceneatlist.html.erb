@@ -39,17 +39,17 @@
 	        $(".select-conf").attr("src","/bluearrow.png");
 	        $(id_of_clicked).attr("src","/greenarrow.png");
 	        var urltogo = "<%=(BASE_URL + '/dashboard/update_conference_neat_list/?conf_name=').to_s%>" + event.target.id;
-	        alert(urltogo);
+	        //alert(urltogo);
 	        //alert(id_of_clicked);
-	        //$.ajax({
-				//url: url_togo,
-				//type: 'get',
-				//dateType: 'html',
-				//success: function(data) {
+	        $.ajax({
+				url: urltogo,
+				type: 'get',
+				dateType: 'html',
+				success: function(data) {
 					// pull the participant initial list
-					//$(".participant_list_items").html(data);
-					//}
-			//});
+					$(".participant_list_items").html(data);
+					}
+			});
 	    });
 	});
 </script>
