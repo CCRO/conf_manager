@@ -8,8 +8,8 @@
 			$( "#P<%=call.sid%>" ).draggable({ revert: true });
 		});
 	</script>
-	
-	<% if (index % 2) == 0 %>
+	<!-- remember zero index alters mnodulo behavior!-->
+	<% if (index % 2) == 1 %>
 		<div id="P<%=call.sid%>" class="ui-widget-content" style="float: right;">
 	<% else %>
 		<div id="P<%=call.sid%>" class="ui-widget-content">
@@ -21,7 +21,7 @@
 		</div>
 	</div>
 	<!-- This sets 2 calls per row-->
-	<% if (index % 2) == 0 %>
+	<% if (index % 2) == 1 %>
 		</div><!-- end intermediate row-->
 		<div class="row">
 	<% end %>	
