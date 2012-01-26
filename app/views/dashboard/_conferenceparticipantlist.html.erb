@@ -1,0 +1,57 @@
+
+	<div class="row">
+		<div class="span10">
+			<div class="conference_list_items">
+				<h3>Conferences: </h3>
+					<table style="width: 520px;">
+					<tr>
+						<td>Name</td>
+						<td>Pin</td>
+						<td></td>
+						<td>Select</td>
+					</tr>
+					<% @conferences.each do |conf| %>
+						<tr>
+							<td><%= conf.confname %></td>
+							<td><%= get_conf_pin(conf.confname) %></td>
+							<td>Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></td>
+							<%conf_css_safe = conf.confname.gsub(' ','-') %>
+							<td><img id="<%= conf_css_safe %>" class="select-conf" src="/bluearrow.png" style="padding-left: 20px;" ></td>
+						</tr>
+					<% end %>
+					</table>
+			</div> <!--  end .conference_list_items-->	
+		</div><!-- end span10 -->
+		
+		<div class="span10" style="border: 1px solid black; padding-left: 5px; padding-right: 5px;">
+			<div class="participant_list_items">
+				<h3>Participants</h3>
+			</div> <!--  end .participant_list_items-->	
+		</div><!-- end span10-->
+	</div><!-- end row-->
+
+
+<script>
+	$(document).ready(function() {
+	    $(".select-conf").click(function(event) {
+	        id_of_clicked = '#' + event.target.id;
+	        $(".participant_list_items").html("<h3>Loading Participants...</h3>");
+	        $(".select-conf").attr("src","/bluearrow.png");
+	        $(id_of_clicked).attr("src","/greenarrow.png");
+	        var urltogo = "<%=(BASE_URL + '/dashboard/update_conference_participant_list?conf_name=').to_s%>" + event.target.id;
+	        //alert(urltogo);
+	        //alert(id_of_clicked);
+	        $.ajax({
+				url: urltogo,
+				type: 'get',
+				dateType: 'html',
+				success: function(data) {
+					// pull the participant initial list
+					$(".participant_list_items").html(data);
+					}
+			});
+	    });
+	});
+</script>
+
+
