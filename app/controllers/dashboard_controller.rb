@@ -4,6 +4,7 @@ class DashboardController < ApplicationController
   
   def index
     @contacts = Contact.all
+    @conferences = Conference.all
   end
   
   def drop_into_waiting_room
