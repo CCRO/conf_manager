@@ -31,18 +31,17 @@
 
 <script>
 	//test selectore droponto_*
-	$(document).ready(function() {
-	    $("[id^=droponto_]").click(function(event) {
-	        var tmp = 'id clicked: ' + event.target.id;
-			alert(tmp);
-		});
-	});
-
+	//$(document).ready(function() {
+	  //  $("[id^=droponto_]").click(function(event) {
+	    //    var tmp = 'id clicked: ' + event.target.id;
+			//alert(tmp);
+	//	});
+	//});
 
 	//dropabble script for the conference table
 	$(function() {
 		//Allows the calls to be droppable into Conferences
-		$( "#droponto_*" ).droppable({
+		$( "[id^=droponto_]" ).droppable({
 				hoverClass: "hover-over-conferences",
     			drop: handleDropEventIntoConferenceList,
     			accept: function(d) { 
@@ -59,7 +58,7 @@
   		var draggable = ui.draggable;
   		//strips off the first character
   		var sid = draggable.attr('id').substring(1);
-  		var conf_name = 'test'; // $(this).attr("id");
+  		var conf_name = $(this).attr("id");
   		alert('sid dropped = ' + sid + '\r\n conference id ' + conf_name)
   		//var url = '<%=BASE_URL%>' + '/dashboard/drop_into_waiting_room/?sid=' + sid + '&conf_name=' + conf_name;
   		//$.post(url);
