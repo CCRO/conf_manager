@@ -2528,3 +2528,7 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 
 .wait, .wait * { cursor: wait;}
 
+.hover-over-queue {
+	background: #CCCCCC;
+}
+
