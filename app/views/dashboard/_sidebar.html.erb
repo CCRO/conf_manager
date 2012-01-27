@@ -20,7 +20,12 @@
 			//Allows the calls to be droppable into Queue/Waiting Room
 			$( "#dropintowaitingroom" ).droppable({
 				hoverClass: "hover-over-queue",
-    			drop: handleDropEventIntoWaitingRoom
+    			drop: handleDropEventIntoWaitingRoom,
+    			accept: function(d) { 
+        			if(d.attr("id")=="P*"||(d.attr("id")=="C*")){ 
+            		return true;
+        			}
+    			}
   			});
   	});		
   	
