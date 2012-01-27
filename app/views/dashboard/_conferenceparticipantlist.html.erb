@@ -32,7 +32,7 @@
 <script>
 	//test selectore droponto_*
 	$(function() {
-		$( "#droponto_*" ).click({
+		$( "[id^=droponto_]" ).click({
 			var tmp = $(this).attr("id");
 			alert(tmp);
 		});
