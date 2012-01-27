@@ -30,6 +30,15 @@
 </div><!-- end row-->
 
 <script>
+	//test selectore droponto_*
+	$(function() {
+		$( "#droponto_*" ).click({
+			var tmp = $(this).attr("id");
+			alert(tmp);
+		});
+	});
+
+
 	//dropabble script for the conference table
 	$(function() {
 		//Allows the calls to be droppable into Conferences
