@@ -22,7 +22,9 @@
 				hoverClass: "hover-over-queue",
     			drop: handleDropEventIntoWaitingRoom,
     			accept: function(d) { 
-        			if(d.attr("id")=="P*"||(d.attr("id")=="C*")){ 
+        			//if(d.attr("id")=="P*"||(d.attr("id")=="C*")){
+        			var testid = d.attr("id");
+            		if( testid.match(/(C|P)\w/) ){
             		return true;
         			}
     			}
@@ -40,12 +42,10 @@
 		//post to url
 		$.post(url);
 		//update the waiting_room
+		window.setTimeout(replace_waiting_room_list, 3000);
 		//replace_waiting_room_list();
 	}
 </script>
-
-
-
 
 <script>
 	//Script that updates the waiting room list every few seconds
