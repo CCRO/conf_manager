@@ -11,15 +11,12 @@
 				</tr>
 				<% @conferences.each do |conf| %>
 					<% conf_css_safe = conf.confname.gsub(' ','-') %>
-					<div id="dropinto_<%= conf_css_safe %>" >
-						<tr>
-							<td><%= conf.confname %></td>
-							<td><%= get_conf_pin(conf.confname) %></td>
-							<td>Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></td>
-							
-							<td><img id="<%= conf_css_safe %>" class="select-conf" src="/bluearrow.png" style="padding-left: 20px;" ></td>
-						</tr>
-					</div> <!--end  #dropinto_<%= conf_css_safe %>-->
+					<tr id="droponto_<%= conf_css_safe %>>
+						<td><%= conf.confname %></td>
+						<td><%= get_conf_pin(conf.confname) %></td>
+						<td>Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></td>
+						<td><img id="<%= conf_css_safe %>" class="select-conf" src="/bluearrow.png" style="padding-left: 20px;" ></td>
+					</tr><!--end  #dropinto_<%= conf_css_safe %> -->
 				<% end %>
 				</table>
 		</div> <!--  end .conference_list_items-->	
@@ -36,7 +33,7 @@
 	//dropabble script for the conference table
 	$(function() {
 		//Allows the calls to be droppable into Conferences
-		$( "#dropinto_*" ).droppable({
+		$( "#droponto_*" ).droppable({
 				hoverClass: "hover-over-conferences",
     			drop: handleDropEventIntoConferenceList,
     			accept: function(d) { 
@@ -53,7 +50,7 @@
   		var draggable = ui.draggable;
   		//strips off the first character
   		var sid = draggable.attr('id').substring(1);
-  		var conf_name = $(this).attr("id");
+  		var conf_name = 'test'; // $(this).attr("id");
   		alert('sid dropped = ' + sid + '\r\n conference id ' + conf_name)
   		//var url = '<%=BASE_URL%>' + '/dashboard/drop_into_waiting_room/?sid=' + sid + '&conf_name=' + conf_name;
   		//$.post(url);
