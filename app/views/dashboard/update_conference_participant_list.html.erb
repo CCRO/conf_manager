@@ -8,19 +8,16 @@
 					$( "#P<%=call.sid%>" ).draggable({ revert: true });
 				});
 			</script>
-			<!-- remember zero index alters mnodulo behavior!-->
-			<% if (index % 2) == 1 %>
-				<div id="P<%=call.sid%>" class="ui-widget-content">
-			<% else %>
-				<div id="P<%=call.sid%>" class="ui-widget-content">
-			<% end %>
-					<div class="btn primary_phone" style="width: 150px">
-						<p><%= get_caller_name(call) %> <%= link_to_hangup_call(call.sid) %> </p>
-						<p>From:<%= call.from %></p>
-						<p>To:<%= call.to %> <%= link_to_toggle_mute_call(call.sid) %></p>
-					</div>
+			
+			<div id="P<%=call.sid%>" class="ui-widget-content">
+				<div class="btn primary_phone" style="width: 150px">
+					<p><%= get_caller_name(call) %> <%= link_to_hangup_call(call.sid) %> </p>
+					<p>From:<%= call.from %></p>
+					<p>To:<%= call.to %> <%= link_to_toggle_mute_call(call.sid) %></p>
 				</div>
-			<!-- This sets 2 calls per row-->
+			</div>
+			
+			<!-- This sets 2 calls per row, remember zero index affects mnodulo behavior!-->
 			<% if (index % 2) == 1 %>
 				</div><!-- end intermediate row-->
 				<div class="row">
@@ -30,5 +27,6 @@
 </div> <!-- end last row-->
 
 <script>
+	//once the participant list loads, return the cursor to normal
 	$("body").toggleClass("wait",false);
 </script>

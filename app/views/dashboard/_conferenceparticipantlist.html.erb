@@ -1,38 +1,51 @@
-
-	<div class="row">
-		<div class="span10">
-			<div class="conference_list_items">
-				<h3>Conferences: </h3>
-					<table style="width: 520px;">
+<div class="row">
+	<div class="span10">
+		<div class="conference_list_items">
+			<h3>Conferences: </h3>
+				<table style="width: 520px;">
+				<tr>
+					<td>Name</td>
+					<td>Pin</td>
+					<td></td>
+					<td>Select</td>
+				</tr>
+				<% @conferences.each do |conf| %>
 					<tr>
-						<td>Name</td>
-						<td>Pin</td>
-						<td></td>
-						<td>Select</td>
+						<td><%= conf.confname %></td>
+						<td><%= get_conf_pin(conf.confname) %></td>
+						<td>Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></td>
+						<%conf_css_safe = conf.confname.gsub(' ','-') %>
+						<td><img id="<%= conf_css_safe %>" class="select-conf" src="/bluearrow.png" style="padding-left: 20px;" ></td>
 					</tr>
-					<% @conferences.each do |conf| %>
-						<tr>
-							<td><%= conf.confname %></td>
-							<td><%= get_conf_pin(conf.confname) %></td>
-							<td>Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></td>
-							<%conf_css_safe = conf.confname.gsub(' ','-') %>
-							<td><img id="<%= conf_css_safe %>" class="select-conf" src="/bluearrow.png" style="padding-left: 20px;" ></td>
-						</tr>
-					<% end %>
-					</table>
-			</div> <!--  end .conference_list_items-->	
-		</div><!-- end span10 -->
+				<% end %>
+				</table>
+		</div> <!--  end .conference_list_items-->	
+	</div><!-- end span10 -->
 		
 		<div class="span7">
-			<div class="participant_list_items" style="">
-				<h3>Participants List</h3>
+			<div class="participant_list_items">
+				<h3>Participants</h3>
 			</div> <!--  end .participant_list_items-->	
 		</div><!-- end span6-->
-	</div><!-- end row-->
+</div><!-- end row-->
+
 
 <script>
-	var participanttimer;
+function handleDropEventIntoConference( event, ui ) {
+  		var draggable = ui.draggable;
+  		//strips off the first character
+  		var sid = draggable.attr('id').substring(1);
+  		var url = '<%=BASE_URL%>' + '/dashboard/drop_into_waiting_room/?sid=' + sid + '&conf_name=' + 
+  		$.post(url);
+  		replace_waiting_room_list()
+	}
+</script>
+
+
+
+<script>
 	//Script that updates the participant list every few seconds
+	var participanttimer;
 	function replace_conference_participant_list() {
 		//find out which button is selected.
 		var tmp = $("img[src$='/greenarrow.png']").attr("id");
