@@ -33,7 +33,7 @@ class DashboardController < ApplicationController
     
     begin
       client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
-      url = BASE_URL + '/ivr/conference_waiting_room/?conf_to_join=' + conf_name_url_safe
+      url = BASE_URL + '/ivr/conference_join/?conf_to_join=' + conf_name_url_safe
       client.account.calls.get(sid).update({:url => url})
     end
     
