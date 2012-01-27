@@ -54,8 +54,9 @@
   		var conf_name = $(this).attr("id");
   		var confname = conf_name.split("_")[1];
   		
-  		alert('sid dropped = ' + sid + '\r\n conference id = ' + confname)
-  		//var url = '<%=BASE_URL%>' + '/dashboard/drop_into_waiting_room/?sid=' + sid + '&conf_name=' + confname;
+  		//alert('sid dropped = ' + sid + '\r\n conference id = ' + confname)
+  		var url = '<%=BASE_URL%>' + '/dashboard/drop_into_waiting_room/?sid=' + sid + '&conf_name=' + confname;
+  		alert(url);
   		//$.post(url);
   		//replace_waiting_room_list()
 	}

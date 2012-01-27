@@ -2535,8 +2535,8 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 }
 
 .hover-over-conferences {
-	margin: -5px;
-	border-color: #0064cd;
+	background-color: #666666;
+	/*border-color: #0064cd;
 	border-width: 5px; 
-	border-style: outset;
+	border-style: outset; */
 }
