@@ -33,7 +33,7 @@
 	//test selectore droponto_*
 	$(document).ready(function() {
 	    $("[id^=droponto_]").click(function(event) {
-	        var tmp = event.target.id;
+	        var tmp = 'id clicked: ' + event.target.id;
 			alert(tmp);
 		});
 	});
