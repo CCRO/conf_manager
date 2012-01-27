@@ -11,7 +11,7 @@
 				</tr>
 				<% @conferences.each do |conf| %>
 					<% conf_css_safe = conf.confname.gsub(' ','-') %>
-					<tr id="droponto_<%= conf_css_safe %>>
+					<tr id="droponto_<%= conf_css_safe %>">
 						<td><%= conf.confname %></td>
 						<td><%= get_conf_pin(conf.confname) %></td>
 						<td>Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></td>
