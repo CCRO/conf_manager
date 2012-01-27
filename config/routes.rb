@@ -32,6 +32,7 @@ ConfManager::Application.routes.draw do
   post "ivr/conference_hold"
   post "ivr/conference_join"
   post "ivr/conference_join_failed"
+  post "ivr/conference_join_by_name"
   post "ivr/conference_waiting_room"
   
   #post "client/makecall"

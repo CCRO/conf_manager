@@ -57,6 +57,11 @@ class IvrController < ApplicationController
     render :action => "conference_hold.xml.builder", :layout => false 
   end
   
+  def conference_join_by_name
+    render :action => "conference_join_by_name.xml.builder", :layout => false 
+  end
+  
+  
   #menu for the conference system
   def conference_join
     #checks if caller wants to return to root menu
