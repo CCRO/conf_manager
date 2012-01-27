@@ -22,7 +22,6 @@
 				hoverClass: "hover-over-queue",
     			drop: handleDropEventIntoWaitingRoom,
     			accept: function(d) { 
-        			//if(d.attr("id")=="P*"||(d.attr("id")=="C*")){
         			//regex test to see if id of call starts with C or P, as in from call list of participant list	
         			var testid = d.attr("id");
             		if( testid.match(/^(C|P)\w/) ){

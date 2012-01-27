@@ -10,13 +10,16 @@
 					<td>Select</td>
 				</tr>
 				<% @conferences.each do |conf| %>
-					<tr>
-						<td><%= conf.confname %></td>
-						<td><%= get_conf_pin(conf.confname) %></td>
-						<td>Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></td>
-						<%conf_css_safe = conf.confname.gsub(' ','-') %>
-						<td><img id="<%= conf_css_safe %>" class="select-conf" src="/bluearrow.png" style="padding-left: 20px;" ></td>
-					</tr>
+					<% conf_css_safe = conf.confname.gsub(' ','-') %>
+					<div id="dropinto_<%= conf_css_safe %>" >
+						<tr>
+							<td><%= conf.confname %></td>
+							<td><%= get_conf_pin(conf.confname) %></td>
+							<td>Invite contacts through <a href="#">Phone</a> or <a href="#">Text</a></td>
+							
+							<td><img id="<%= conf_css_safe %>" class="select-conf" src="/bluearrow.png" style="padding-left: 20px;" ></td>
+						</tr>
+					</div> <!--end  #dropinto_<%= conf_css_safe %>-->
 				<% end %>
 				</table>
 		</div> <!--  end .conference_list_items-->	
@@ -29,23 +32,38 @@
 		</div><!-- end span6-->
 </div><!-- end row-->
 
-
 <script>
-function handleDropEventIntoConference( event, ui ) {
+	//dropabble script for the conference table
+	$(function() {
+		//Allows the calls to be droppable into Conferences
+		$( "#dropinto_*" ).droppable({
+				hoverClass: "hover-over-conferences",
+    			drop: handleDropEventIntoConferenceList,
+    			accept: function(d) { 
+        			//regex test to see if id of call starts with C,Q, or P, as in from (C)all list, (Q)ueue list, or (P)articipant list	
+        			var testid = d.attr("id");
+            		if( testid.match(/^(C|P|Q)\w/) ){
+            		return true;
+        			}
+    			}
+  		});
+	});
+
+	function handleDropEventIntoConferenceList( event, ui ) {
   		var draggable = ui.draggable;
   		//strips off the first character
   		var sid = draggable.attr('id').substring(1);
-  		var url = '<%=BASE_URL%>' + '/dashboard/drop_into_waiting_room/?sid=' + sid + '&conf_name=' + 
-  		$.post(url);
-  		replace_waiting_room_list()
+  		var conf_name = $(this).attr("id");
+  		alert('sid dropped = ' + sid + '\r\n conference id ')
+  		//var url = '<%=BASE_URL%>' + '/dashboard/drop_into_waiting_room/?sid=' + sid + '&conf_name=' + conf_name;
+  		//$.post(url);
+  		//replace_waiting_room_list()
 	}
 </script>
 
-
-
 <script>
 	//Script that updates the participant list every few seconds
-	var participanttimer;
+	var participanttimer; //using this instead of window.setTimeout since this content isn't reloaded with ajax
 	function replace_conference_participant_list() {
 		//find out which button is selected.
 		var tmp = $("img[src$='/greenarrow.png']").attr("id");
