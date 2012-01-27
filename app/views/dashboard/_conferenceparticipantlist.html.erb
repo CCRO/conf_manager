@@ -50,15 +50,15 @@
   		var draggable = ui.draggable;
   		//strips off the first character
   		var sid = draggable.attr('id').substring(1);
-  		//pulls droponto_conf-name-here
+  		//pulls "droponto_conf-name-here"
   		var conf_name = $(this).attr("id");
+  		//changes to "conf-name-here"
   		var confname = conf_name.split("_")[1];
   		
   		//alert('sid dropped = ' + sid + '\r\n conference id = ' + confname)
   		var url = '<%=BASE_URL%>' + '/dashboard/drop_sid_into_conf/?sid=' + sid + '&conf_name=' + confname;
   		//alert(url);
   		$.post(url);
-  		//replace_waiting_room_list()
 	}
 </script>
 

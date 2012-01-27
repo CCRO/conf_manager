@@ -23,9 +23,7 @@ class DashboardController < ApplicationController
   
   def drop_sid_into_conf
     sid = params[:sid]
-    conf_name = params[:conf_name]
-    
-    conf_name_url_safe = conf_name.gsub(' ', '%')
+    conf_name = params[:conf_name] #this is already url safe as in conf-name-format
     
     if sid.nil? or conf_name.nil?
       return
@@ -33,7 +31,7 @@ class DashboardController < ApplicationController
     
     begin
       client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
-      url = BASE_URL + '/ivr/conference_join/?conf_to_join=' + conf_name_url_safe
+      url = BASE_URL + '/ivr/conference_join_by_name/?conf=' + conf_name
       client.account.calls.get(sid).update({:url => url})
     end
     

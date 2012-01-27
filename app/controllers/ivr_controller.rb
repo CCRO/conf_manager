@@ -58,9 +58,9 @@ class IvrController < ApplicationController
   end
   
   def conference_join_by_name
+    @conf_to_join = params[:conf].gsub('-',' ') #convert to freindly name
     render :action => "conference_join_by_name.xml.builder", :layout => false 
   end
-  
   
   #menu for the conference system
   def conference_join
