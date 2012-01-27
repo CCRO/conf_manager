@@ -21,6 +21,24 @@ class DashboardController < ApplicationController
     end
   end
   
+  def drop_sid_into_conf
+    sid = params[:sid]
+    conf_name = params[:conf_name]
+    
+    conf_name_url_safe = conf_name.gsub(' ', '%')
+    
+    if sid.nil? or conf_name.nil?
+      return
+    end
+    
+    begin
+      client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
+      url = BASE_URL + '/ivr/conference_waiting_room/?conf_to_join=' + conf_name_url_safe
+      client.account.calls.get(sid).update({:url => url})
+    end
+    
+  end
+  
   def hangup_call
     sid = params[:sid]
     

@@ -10,6 +10,7 @@ ConfManager::Application.routes.draw do
   get "dashboard/update_conference_participant_list"
   
   post "dashboard/drop_into_waiting_room"
+  post "dashboard/drop_sid_into_conf"
   post "dashboard/hangup_call"
   post "dashboard/hangup_call_immediate"
   post "dashboard/mute_call"
