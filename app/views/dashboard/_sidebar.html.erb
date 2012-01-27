@@ -23,8 +23,9 @@
     			drop: handleDropEventIntoWaitingRoom,
     			accept: function(d) { 
         			//if(d.attr("id")=="P*"||(d.attr("id")=="C*")){
+        			//regex test to see if id of call starts with C or P, as in from call list of participant list	
         			var testid = d.attr("id");
-            		if( testid.match(/(C|P)\w/) ){
+            		if( testid.match(/^(C|P)\w/) ){
             		return true;
         			}
     			}
@@ -42,12 +43,15 @@
 		//post to url
 		$.post(url);
 		//update the waiting_room
-		window.setTimeout(replace_waiting_room_list, 3000);
+		clearTimeout(waitingroomtimer)
+		waitingroomtimer = setTimeout(replace_waiting_room_list(), 3000);
+		//window.setTimeout(replace_waiting_room_list, 3000);
 		//replace_waiting_room_list();
 	}
 </script>
 
 <script>
+	var waitingroomtimer;
 	//Script that updates the waiting room list every few seconds
 	function replace_waiting_room_list() {
 	// Do a $.ajax call to your server.
@@ -59,7 +63,8 @@
 			// Replace the list with the new one.
 			$('.waiting_room_list_items').html(data);
 			// And restart the timer.
-			window.setTimeout(replace_waiting_room_list, 1000);
+			//window.setTimeout(replace_waiting_room_list, 1000);
+			waitingroomtimer = setTimeout(replace_waiting_room_list(), 1000);
 		}//,
 		//failure: alert("ajax failed to get")
 	});
