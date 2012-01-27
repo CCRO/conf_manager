@@ -51,7 +51,7 @@
 </script>
 
 <script>
-	var waitingroomtimer;
+	//var waitingroomtimer;
 	//Script that updates the waiting room list every few seconds
 	function replace_waiting_room_list() {
 	// Do a $.ajax call to your server.
@@ -63,8 +63,8 @@
 			// Replace the list with the new one.
 			$('.waiting_room_list_items').html(data);
 			// And restart the timer.
-			//window.setTimeout(replace_waiting_room_list, 1000);
-			waitingroomtimer = setTimeout(replace_waiting_room_list(), 1000);
+			window.setTimeout(replace_waiting_room_list, 1000);
+			//waitingroomtimer = setTimeout(replace_waiting_room_list(), 1000);
 		}//,
 		//failure: alert("ajax failed to get")
 	});
