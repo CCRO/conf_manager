@@ -31,7 +31,7 @@
 	</div><!-- end row-->
 
 <script>
-	var somesillytimer;
+	var participanttimer;
 	//Script that updates the participant list every few seconds
 	function replace_conference_participant_list() {
 		//find out which button is selected.
@@ -48,7 +48,7 @@
 				$('.participant_list_items').html(data);
 				// And restart the timer.
 				//window.setTimeout(replace_conference_participant_list(), 2000);
-				somesillytimer = setTimeout("replace_conference_participant_list()", 1500 );
+				participanttimer = setTimeout("replace_conference_participant_list()", 1000 );
 			}//,
 			//failure: alert("Failed to get the updated participant list from " + urlrecieved + '\r\n urltogo: ' + urltogo)
 		});
@@ -62,6 +62,7 @@
 	        $(".select-conf").attr("src","/bluearrow.png");
 	        $(id_of_clicked).attr("src","/greenarrow.png");
 	        $("h3 > .participant_list_items").append("...loading");
+	        $("body").toggleClass("wait",true);
 	        //alert('url to go' + urltogo);
 	        //alert(id_of_clicked);
 	        //$.ajax({
