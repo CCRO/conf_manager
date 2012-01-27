@@ -24,7 +24,7 @@
   	});		
   	
 	function handleDropEventIntoWaitingRoom( event, ui ) {
-		//$( this ).find( "h3" ).html( "Updating" );
+		$(".waiting_room_list_items").find("h3").html("Updating...");
 		var draggable = ui.draggable;
 		//strips off the first character from a (P)articipant, a (Q)ueu, or a (C)all SID 
 		var sid = draggable.attr('id').substring(1);

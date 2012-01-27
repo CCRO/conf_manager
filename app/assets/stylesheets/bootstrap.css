@@ -2529,7 +2529,8 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 .wait, .wait * { cursor: wait;}
 
 .hover-over-queue {
-	background-color: #CCCCCC;
-	border: 10px solid blue;
+	border-color: #0064cd;
+	border-width: 7px; 
+	border-style: outset;
 }
 
