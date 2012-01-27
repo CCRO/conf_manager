@@ -51,44 +51,40 @@
 </script>
 
 <script>
-	//var waitingroomtimer;
 	//Script that updates the waiting room list every few seconds
 	function replace_waiting_room_list() {
-	// Do a $.ajax call to your server.
-	$.ajax({
-		url: '/dashboard/update_waiting_room_list',
-		type: 'get',
-		dateType: 'html',
-		success: function(data) {
-			// Replace the list with the new one.
-			$('.waiting_room_list_items').html(data);
-			// And restart the timer.
-			window.setTimeout(replace_waiting_room_list, 1000);
-			//waitingroomtimer = setTimeout(replace_waiting_room_list(), 1000);
-		}//,
-		//failure: alert("ajax failed to get")
-	});
-}
-replace_waiting_room_list();
+		// Do a $.ajax call to your server.
+		$.ajax({
+			url: '/dashboard/update_waiting_room_list',
+			type: 'get',
+			dateType: 'html',
+			success: function(data) {
+				// Replace the list with the new one.
+				$('.waiting_room_list_items').html(data);
+				// And restart the timer.
+				window.setTimeout(replace_waiting_room_list, 1000);
+			}
+		});
+	}
+	replace_waiting_room_list();
 </script> 
 
 <script>
 	//Script that updates the call list every few seconds
 	function replace_call_list() {
-	// Do a $.ajax call to your server.
-	$.ajax({
-		url: '/dashboard/update_call_list',
-		type: 'get',
-		dateType: 'html',
-		success: function(data) {
-			// Replace the list with the new one.
-			$('.call_list_items').html(data);
-			// And restart the timer.
-			window.setTimeout(replace_call_list, 1000);
-		}//,
-		//failure: alert("ajax failed to get")
-	});
-}
-replace_call_list();
+		// Do a $.ajax call to your server.
+		$.ajax({
+			url: '/dashboard/update_call_list',
+			type: 'get',
+			dateType: 'html',
+			success: function(data) {
+				// Replace the list with the new one.
+				$('.call_list_items').html(data);
+				// And restart the timer.
+				window.setTimeout(replace_call_list, 1000);
+			}
+		});
+	}
+	replace_call_list();
 </script>
 
