@@ -2530,7 +2530,7 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 
 .hover-over-queue {
 	border-color: #0064cd;
-	border-width: 7px; 
+	border-width: 5px; 
 	border-style: outset;
 }
 

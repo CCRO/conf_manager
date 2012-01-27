@@ -15,6 +15,7 @@
 </div><!--end .sidebar-->
 
 <script>
+	//Droppable scripts for the Queue
 	$(function() {
 			//Allows the calls to be droppable into Queue/Waiting Room
 			$( "#dropintowaitingroom" ).droppable({
@@ -24,19 +25,17 @@
   	});		
   	
 	function handleDropEventIntoWaitingRoom( event, ui ) {
-		$(".waiting_room_list_items").find("h3").html("Updating...");
+		//feedback to the user
+		$(".waiting_room_list_items").find("h3").html("Adding Call");
 		var draggable = ui.draggable;
 		//strips off the first character from a (P)articipant, a (Q)ueu, or a (C)all SID 
 		var sid = draggable.attr('id').substring(1);
-		
 		//drop into waiting room
 		var url = '<%=BASE_URL%>' + '/dashboard/drop_into_waiting_room/?sid=' + sid;
-		
 		//post to url
 		$.post(url);
-		
 		//update the waiting_room
-		replace_waiting_room_list();
+		//replace_waiting_room_list();
 	}
 </script>
 
