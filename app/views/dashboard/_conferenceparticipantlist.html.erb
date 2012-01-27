@@ -30,14 +30,6 @@
 </div><!-- end row-->
 
 <script>
-	//test selectore droponto_*
-	//$(document).ready(function() {
-	  //  $("[id^=droponto_]").click(function(event) {
-	    //    var tmp = 'id clicked: ' + event.target.id;
-			//alert(tmp);
-	//	});
-	//});
-
 	//dropabble script for the conference table
 	$(function() {
 		//Allows the calls to be droppable into Conferences
@@ -58,9 +50,12 @@
   		var draggable = ui.draggable;
   		//strips off the first character
   		var sid = draggable.attr('id').substring(1);
+  		//pulls droponto_conf-name-here
   		var conf_name = $(this).attr("id");
-  		alert('sid dropped = ' + sid + '\r\n conference id ' + conf_name)
-  		//var url = '<%=BASE_URL%>' + '/dashboard/drop_into_waiting_room/?sid=' + sid + '&conf_name=' + conf_name;
+  		var confname = conf_name.split("_")[1];
+  		
+  		alert('sid dropped = ' + sid + '\r\n conference id = ' + confname)
+  		//var url = '<%=BASE_URL%>' + '/dashboard/drop_into_waiting_room/?sid=' + sid + '&conf_name=' + confname;
   		//$.post(url);
   		//replace_waiting_room_list()
 	}
