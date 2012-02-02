@@ -10,5 +10,6 @@ the hidden field generates the initial sid correctly and changes based on new ca
 #################FIXED BUGS ###########################################
 
 #PROBLEM# calls get saved to the db multiple times
-	#SOURCE# This is caused by the web requests being slow, then the second or third web request catching up and saving all of them, I decide which calls to 			   save before the web request is sent, let alone finished
-	#RESOLUTION# In the ActiveCall model validate unique sid resolved the issue of duplication
+	#SOURCE# This is caused by the web requests being slow, then the second or third web request catching up and saving all of them, I decide which calls to 
+				   save before the web request is sent, let alone finished
+	#RESOLUTION# In the ActiveCall model, validate unique sid resolved the issue of duplication
