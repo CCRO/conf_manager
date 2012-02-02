@@ -11,7 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120120013131) do
+ActiveRecord::Schema.define(:version => 20120202031059) do
+
+  create_table "active_calls", :force => true do |t|
+    t.string   "sid"
+    t.string   "to"
+    t.string   "from"
+    t.string   "direction"
+    t.string   "caller_name"
+    t.boolean  "muted"
+    t.boolean  "ended"
+    t.integer  "active_conference_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "active_calls", ["active_conference_id"], :name => "index_active_calls_on_active_conference_id"
+
+  create_table "active_conferences", :force => true do |t|
+    t.string   "sid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "friendly_name"
+  end
 
   create_table "conferences", :force => true do |t|
     t.string   "confname"
