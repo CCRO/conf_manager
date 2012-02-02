@@ -198,7 +198,6 @@ class DashboardController < ApplicationController
     #sid list to be removed, 
     @sid_to_remove = sid_list - sid_from_db
     
-    
     @call_count = sid_from_db.count
         
     #sid list that is loaded into the hidden value
