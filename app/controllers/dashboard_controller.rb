@@ -168,6 +168,46 @@ class DashboardController < ApplicationController
         format.html  {render :layout => false}
     end
   end
+  
+  def update_call_list_from_db
+    #get sidlist passed in
+    sid_passed_in = params[:sidstr]
+    
+    if sid_passed_in.nil?
+      sid_passed_in = ""
+    end
+        
+    sid_list = []
+    
+    #split the sids into an array
+    if !sid_passed_in.blank?
+      sid_list = sid_passed_in.split('-')
+    end
+    
+    #build array of calls
+    sid_from_db = []
+    allcalls = ActiveCall.all
+    allcalls.each do |dbcall|
+      sid_from_db << dbcall.sid
+    end
+    
+    #identify new calls, all the active calls minus what is already there
+    new_sid_list = sid_from_db - sid_list
+    @new_calls = ActiveCall.where(:sid => new_sid_list)
+    
+    #sid list to be removed, 
+    @sid_to_remove = sid_list - sid_from_db
+    
+    
+    @call_count = sid_from_db.count
+        
+    #sid list that is loaded into the hidden value
+    @sid_list = sid_from_db.join('-')
+    
+    respond_to do |format|
+        format.html  {render :layout => false}
+    end
+  end
 
   def update_call_list
       #create client

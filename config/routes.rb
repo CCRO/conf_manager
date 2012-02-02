@@ -5,6 +5,7 @@ ConfManager::Application.routes.draw do
 
   get "dashboard/index"
   get "dashboard/update_call_list"
+  get "dashboard/update_call_list_from_db"
   get "dashboard/update_waiting_room_list"
   get "dashboard/update_conference_list"
   get "dashboard/update_conference_participant_list"

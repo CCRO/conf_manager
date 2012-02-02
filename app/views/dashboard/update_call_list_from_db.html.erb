@@ -1,0 +1,25 @@
+<h3>Active Calls (<%=@call_count%>)</h3>
+
+<% @new_calls.each do |call| %>
+
+	<script>
+		$(function() {
+			//makes the call  in the call list draggable
+			$( "#C<%=call.sid%>" ).draggable({ revert: true });
+		});
+	</script>
+	
+	<div id="C<%=call.sid%>" class="ui-widget-content">
+		<div class="btn primary_phone" style="width: 150px">
+			<p><%= call.caller_name %> <%= link_to_hangup_call(call.sid) %> </p>
+			<p>From:<%= call.from %></p>
+			<p>To:<%= call.to %> <%= link_to_toggle_mute_call(call.sid) %></p>
+		</div>
+	</div>
+<% end %>
+<script>
+	$("#sidstr").attr("value","<%= @sid_list %>");
+	<% @sid_to_remove.each do |sid| %>
+	$("[id$=<%=sid%>]").fadeOut(1000);
+	<% end %>
+</script>

@@ -1,0 +1,28 @@
+<div class="sidebar">
+	<div class="well">
+			<!-- Insert the call list here-->
+	    	<div class="call_list_items">	
+	    	</div> <!--  end .call_list_items-->
+	    	<input type="hidden" name="sidstr" value="" id="sidstr" />
+    </div><!--end .well-->
+</div><!--end .sidebar-->
+
+
+<script>
+$(document).ready(function() {
+	setInterval(function(){
+			var sidstrval = $("#sidstr").attr("value")
+			var urlforcalllist = '/dashboard/update_call_list_from_db?sidstr=' + sidstrval
+			$.ajax({
+				url: urlforcalllist,
+				type: 'get',
+				dateType: 'html',
+				success: function(data) {
+					$(".call_list_items").append(data);			
+				} //end success
+			});//end ajax
+	}, 2000); //end setInterval
+}); //end doc.ready
+</script>
+
+
