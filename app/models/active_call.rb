@@ -1,5 +1,8 @@
 class ActiveCall < ActiveRecord::Base
   belongs_to :active_conference
+  
+  validates_uniqueness_of :sid
+  
     
   def self.update_call_list
     begin

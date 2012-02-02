@@ -1,3 +1,6 @@
+<% if @new_calls.empty? %>
+	<p>Something is broken</p>
+<% end %>
 <% @new_calls.each do |call| %>
 
 	<script>
