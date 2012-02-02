@@ -1,5 +1,3 @@
-<h3>Active Calls (<%=@call_count%>)</h3>
-
 <% @new_calls.each do |call| %>
 
 	<script>
@@ -19,6 +17,7 @@
 <% end %>
 <script>
 	$("#sidstr").attr("value","<%= @sid_list %>");
+	$("#call-list-count").html("<%= @call_count %>");
 	<% @sid_to_remove.each do |sid| %>
 	$("[id$=<%=sid%>]").fadeOut(1000);
 	<% end %>
