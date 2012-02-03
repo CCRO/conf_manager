@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120202031059) do
+ActiveRecord::Schema.define(:version => 20120203074323) do
 
   create_table "active_calls", :force => true do |t|
     t.string   "sid"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20120202031059) do
   end
 
   add_index "active_calls", ["active_conference_id"], :name => "index_active_calls_on_active_conference_id"
+  add_index "active_calls", ["sid"], :name => "index_active_calls_on_sid", :unique => true
 
   create_table "active_conferences", :force => true do |t|
     t.string   "sid"

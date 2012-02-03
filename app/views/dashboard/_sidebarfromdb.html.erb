@@ -8,8 +8,25 @@
     </div><!--end .well-->
 </div><!--end .sidebar-->
 
+<!-- 
+<script>
+	var urlforcalllist = '/dashboard/update_call_list_from_db?sidstr=' + $("#sidstr").attr("value")
+	$.ajax({
+		url: urlforcalllist,
+		type: 'get',
+		dateType: 'html',
+		success: function(data) {
+		$(".call_list_items").append(data);			
+		} //end success
+	});//end ajax
+</script>
+-->
+
+
+
 <script>
 $(document).ready(function() {
+	$("#sidstr").attr("value","");
 	setInterval(function(){
 			var urlforcalllist = '/dashboard/update_call_list_from_db?sidstr=' + $("#sidstr").attr("value")
 			$.ajax({

@@ -1,8 +1,7 @@
 class ActiveCall < ActiveRecord::Base
   belongs_to :active_conference
-  
-  validates_uniqueness_of :sid
-  
+
+  validates :sid, :uniqueness => true
     
   def self.update_call_list
     begin
@@ -64,7 +63,8 @@ class ActiveCall < ActiveRecord::Base
               :ended => false              
             )
             #save the call
-           added_call.save 
+            added_call.save
+
         end
       end
       
