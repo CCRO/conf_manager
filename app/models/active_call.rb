@@ -2,7 +2,25 @@ class ActiveCall < ActiveRecord::Base
   belongs_to :active_conference
 
   validates :sid, :uniqueness => true
-    
+  
+  def self.get_caller_name(web_call)
+    #see if user is in db
+    if web_call.direction == 'inbound'
+      caller = Contact.where("phone like ?", web_call.from[2..-1]).first
+    elsif call.direction == 'outbound'
+      caller = Contact.where("phone like ?", web_call.to[2..-1]).first
+    end
+    #if user is in db, use that name, else caller id, else "Uknown Caller"
+    if !caller.nil?
+      callerstr = caller.user
+    elsif !web_call.caller_name.nil? 
+      callerstr = web_call.caller_name
+    else
+     callerstr = 'Unknown Caller'     
+    end
+    return callerstr 
+  end
+  
   def self.update_call_list
     begin
       #create client
@@ -36,27 +54,13 @@ class ActiveCall < ActiveRecord::Base
         #if the call needs to be added
         if calls_to_add.include?(web_call.sid)
           #format name
-            #see if user is in db
-            if web_call.direction == 'inbound'
-              caller = Contact.where("phone like ?", web_call.from[2..-1]).first
-            elsif call.direction == 'outbound'
-              caller = Contact.where("phone like ?", web_call.to[2..-1]).first
-            end
-            #if user is in db, use that name, else caller id, else "Uknown Caller"
-            if !caller.nil?
-              callerstr = caller.user
-            elsif !web_call.caller_name.nil? 
-              callerstr = web_call.caller_name
-            else
-             callerstr = 'Unknown Caller'     
-            end 
-          
-                    
+          callerstr = ActiveCall.get_caller_name(web_call)
+       
           #create the clal in the db
           added_call = ActiveCall.new(
               :sid => web_call.sid,
-              :to => web_call.to,
-              :from => web_call.from,
+              :to => web_call.to[2..-1],
+              :from => web_call.from[2..-1],
               :direction => web_call.direction,
               :caller_name => callerstr,
               :muted => false,
@@ -64,11 +68,10 @@ class ActiveCall < ActiveRecord::Base
             )
             #save the call
             added_call.save
-
         end
       end
       
     end
-  end
+  end #end update_call_list
   
-end
+end #end class

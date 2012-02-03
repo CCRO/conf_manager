@@ -8,3 +8,8 @@ scheduler = Rufus::Scheduler.start_new
 scheduler.every("2000") do
   ActiveCall.update_call_list
 end
+
+#update the active conferences
+scheduler.every("3000") do
+  ActiveCall.update_conference_list
+end

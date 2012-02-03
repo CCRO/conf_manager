@@ -1,0 +1,3 @@
+Build a list of Active Conferences
+Assign Participant calls to the conference
+Render Participants using the append method from the db

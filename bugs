@@ -1,9 +1,6 @@
 ####################ACTIVE BUGS########################################
 
-#PROBLEM# if the calls are already active when the pageloads, @new_calls is empty?!?!?!?
 
-The call count is made correctly
-the hidden field generates the initial sid correctly and changes based on new calls
 
 
 
@@ -12,4 +9,12 @@ the hidden field generates the initial sid correctly and changes based on new ca
 #PROBLEM# calls get saved to the db multiple times
 	#SOURCE# This is caused by the web requests being slow, then the second or third web request catching up and saving all of them, I decide which calls to 
 				   save before the web request is sent, let alone finished
-	#RESOLUTION# In the ActiveCall model, validate unique sid resolved the issue of duplication
+	#RESOLUTION# In the ActiveCall model, validate unique sid resolved the issue of duplication, added sid as a index in the db that only saves unique values
+				 due to the sql race limitation of uniqueness validation
+
+
+#PROBLEM# if the calls are already active when the pageloads, @new_calls is empty?!?!?!?
+
+	#SOURCE#  when a user reloaded the page, the hidden sid list wasn't correctly blamke out
+	the hidden field generates the initial sid correctly and changes based on new calls
+	#RESOLUTION# jquery on page load to reset the hidden sid list to "", forcing all the new calls to be drawn

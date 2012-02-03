@@ -19,9 +19,6 @@ module DashboardHelper
   
   def link_to_hangup_call(sid)
     #attempt to select all of them
-    #js = 'var tmp = $("div[class$=' + sid + ']").attr("class"); alert(tmp);'
-    #js = 'var tmp = $("[class$=' + sid + ']").find(":nth-child(1)").attr(); alert(tmp);'
-    #js = '$("[class$=' + sid+ ']").find(":first").attr("class","btn hangup_phone"); var url = "' + BASE_URL + '/dashboard/hangup_call_immediate/?sid=' + sid + '"; $.post(url);'
     js = '$("[id$=' + sid + ']").find(":first").attr("class","btn hangup_phone"); var url = "' + BASE_URL + '/dashboard/hangup_call_immediate/?sid=' + sid + '"; $.post(url);'
     #this only selects the one that was clicked
     #js = '$(this).parent().parent().attr("class","btn hangup_phone"); var url = "' + BASE_URL + '/dashboard/hangup_call_immediate/?sid=' + sid + '"; $.post(url);'
