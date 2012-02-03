@@ -23,11 +23,36 @@
 	</div><!-- end span10 -->
 		
 		<div class="span7">
-			<h3>Participants</h3>
+			<h3>Participants (<span id="part-list-count">0</span>)</h3>
+			<!-- Insert the participant list here-->
 			<div class="participant_list_items">
 			</div> <!--  end .participant_list_items-->	
-		</div><!-- end span6-->
+			<input type="hidden" name="part-sid-str" value="" id="part-sid-str" />
+		</div><!-- end span7-->
 </div><!-- end row-->
+
+<script>
+$(document).ready(function() {
+	//resets the sid list value when a user refreshes the browser
+	$("#sidstr").attr("value","");
+	//updates the call list every few seconds
+	setInterval(function(){
+			var urlforcalllist = '/dashboard/update_call_list_from_db?sidstr=' + $("#sidstr").attr("value")
+			$.ajax({
+				url: urlforcalllist,
+				type: 'get',
+				dateType: 'html',
+				success: function(data) {
+					$(".call_list_items").append(data);
+				} //end success
+			});//end ajax
+	}, 1500); //end setInterval
+}); //end doc.ready
+</script>
+
+
+
+
 
 <script>
 	//dropabble script for the conference table
@@ -90,23 +115,11 @@
 	$(document).ready(function() {
 	    $(".select-conf").click(function(event) {
 	        id_of_clicked = '#' + event.target.id;
-	        //$(".participant_list_items").("h3").append("...loading");
 	        $(".select-conf").attr("src","/bluearrow.png");
 	        $(id_of_clicked).attr("src","/greenarrow.png");
 	        $("h3 > .participant_list_items").append("...loading");
 	        $("body").toggleClass("wait",true);
-	        //alert('url to go' + urltogo);
-	        //alert(id_of_clicked);
-	        //$.ajax({
-				//url: urltogo,
-				//type: 'get',
-				//dateType: 'html',
-				//success: function(data) {
-					// pull the participant initial list
-					//$(".participant_list_items").html(data);
-					//}
 			replace_conference_participant_list();
-			//});
 	    });
 	});
 </script>

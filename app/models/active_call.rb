@@ -1,7 +1,8 @@
 class ActiveCall < ActiveRecord::Base
   belongs_to :active_conference
 
-  validates :sid, :uniqueness => true
+  validates :sid, :presence => true, :uniqueness => true
+  
   
   def self.get_caller_name(web_call)
     #see if user is in db

@@ -11,5 +11,6 @@ end
 
 #update the active conferences
 scheduler.every("3000") do
-  ActiveCall.update_conference_list
+  ActiveConference.update_conference_list
+  ActiveConference.update_all_participant_lists
 end

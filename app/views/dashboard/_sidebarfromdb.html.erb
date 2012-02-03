@@ -10,7 +10,9 @@
 
 <script>
 $(document).ready(function() {
+	//resets the sid list value when a user refreshes the browser
 	$("#sidstr").attr("value","");
+	//updates the call list every few seconds
 	setInterval(function(){
 			var urlforcalllist = '/dashboard/update_call_list_from_db?sidstr=' + $("#sidstr").attr("value")
 			$.ajax({
