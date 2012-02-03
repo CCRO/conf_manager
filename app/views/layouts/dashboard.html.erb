@@ -7,8 +7,8 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="CCRO Conference Manager, using the Twilio API">
+  <meta name="author" content="Kyle Luzny">
   
   <link rel="icon" type="image/ico" href="/favicon.ico">
    		<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -35,11 +35,9 @@
 		      	<a class="brand" href="#">Conference Dashboard</a>
 		        <ul class="nav">
 		            <li class="active"><a href="#">Home</a></li>
-		            <li><a href="#about">About</a></li>
-		            <li><a href="#contact">History</a></li>
+		            <li><a href="#">History</a></li>
 		        </ul>
 		        <p class="pull-right">Using Caller ID: <a href="#"> <%= CALLER_ID %></a></p>
-				<p class="pull-right">Balance <a href="#">$###.##</a></p>
 			    <p class="pull-right">Account: <a href="#"><%= ACCOUNT_NAME %></a></p>	
 		      </div><!-- end container-fluid -->
 	    </div> <!-- end .topbar-inner -->
@@ -48,7 +46,7 @@
 <%= yield %>
 
 <footer>
-          <p>© Kyle Luzny, as of Jan. 01, 2012</p>
+          <p>© Kyle Luzny, as of January 2012</p>
 </footer>
 
 </body>
