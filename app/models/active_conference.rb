@@ -57,7 +57,7 @@ class ActiveConference < ActiveRecord::Base
       end
       
       #disasociate the outdated calls
-      part_to_rem = old_part_list - new_part_list
+      part_to_remove = old_part_list - new_part_list
       
       part_to_remove.each do |part_sid|
         call = ActiveCall.where("sid = ?",part_sid).first

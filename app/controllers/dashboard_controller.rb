@@ -172,10 +172,10 @@ class DashboardController < ApplicationController
   def update_participant_list_from_db
     #passed in sidstr= &conf_name=
     sid_passed_in = params[:sidstr]
-    @conf_name = params[:conf_name]
+    @conf_name = params[:conf_name].gsub('-',' ')
     
     #if no conference is sent in, do nothing
-    if @conf_name.nil? or conf_name.blank?
+    if @conf_name.nil? or @conf_name.blank? or @conf_name == "undefined"
       render :nothing => true
       return
     end
@@ -193,9 +193,10 @@ class DashboardController < ApplicationController
     
     @part_sid_list = []
     @part_count = 0
+    @participants =[]
     
     conf = ActiveConference.where("friendly_name = ?",@conf_name).first
-    if !conf.empty?
+    if !conf.nil?
       @participants = conf.active_calls.all
       @participants.each do |part|
         @part_sid_list << part.sid
@@ -203,7 +204,9 @@ class DashboardController < ApplicationController
       @part_count = @participants.count
     end
     
-    @part_sid_to_remove = web_sid_list - @part_sid_list 
+    @part_sid_to_remove = (web_sid_list - @part_sid_list)
+    
+    @part_sid_list = @part_sid_list.join('-') 
     
     respond_to do |format|
         format.html  {render :layout => false}

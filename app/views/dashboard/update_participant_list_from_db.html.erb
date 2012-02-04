@@ -34,7 +34,7 @@
 	
 	//update the h3 for the participants
 	$("#part-list-count").html("<%= @part_count %>");
-	$("#part-list-name").html("for <%= @conf_name %>");
+	$("#part-list-name").html("in <%= @conf_name %>");
 	
 	//fadeout only the discontinued participants
 	<% @part_sid_to_remove.each do |sid| %>
