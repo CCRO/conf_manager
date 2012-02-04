@@ -20,7 +20,7 @@ $(document).ready(function() {
 				url: urlforcalllist,
 				type: 'get',
 				dateType: 'html',
-				asynch: false,
+				async: false,
 				success: function(data) {
 					$(".call_list_items").append(data);
 				} //end success
