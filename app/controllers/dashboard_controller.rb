@@ -191,22 +191,27 @@ class DashboardController < ApplicationController
       web_sid_list = sid_passed_in.split('-')
     end
     
-    @part_sid_list = []
+    part_sid_list = []
     @part_count = 0
     @participants =[]
     
     conf = ActiveConference.where("friendly_name = ?",@conf_name).first
     if !conf.nil?
-      @participants = conf.active_calls.all
-      @participants.each do |part|
-        @part_sid_list << part.sid
+      participants = conf.active_calls.all
+      participants.each do |part|
+        part_sid_list << part.sid
       end
-      @part_count = @participants.count
     end
     
-    @part_sid_to_remove = (web_sid_list - @part_sid_list)
+    @part_sid_to_remove = (web_sid_list - part_sid_list)
     
-    @part_sid_list = @part_sid_list.join('-') 
+    part_to_add = part_sid_list - web_sid_list
+    
+    @participants = ActiveCall.where(:sid => part_to_add)
+    
+    @part_count = part_sid_list.count
+    
+    @part_sid_list = part_sid_list.join('-') 
     
     respond_to do |format|
         format.html  {render :layout => false}

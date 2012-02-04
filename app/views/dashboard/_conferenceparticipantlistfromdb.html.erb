@@ -38,18 +38,21 @@ $(document).ready(function() {
 	$("#part-sid-str").attr("value","");
 	//updates the call list every few seconds
 	setInterval(function(){
-			var confname = $("img[src$='/greenarrow.png']").attr("id");
-			var partsidstr = $("#part-sid-str").attr("value");
-			var urlforpartlist = '/dashboard/update_participant_list_from_db?sidstr=' + partsidstr +'&conf_name=' + confname;
+			$confname = $("img[src$='/greenarrow.png']").attr("id");
+			$partsidstr = $("#part-sid-str").attr("value");
+			var urlforpartlist = '/dashboard/update_participant_list_from_db?sidstr=' + $partsidstr +'&conf_name=' + $confname;
 			$.ajax({
 				url: urlforpartlist,
 				type: 'get',
 				dateType: 'html',
-				success: function(data) {
+				//success: 
+				statusCode: {
+					200: function(data) {
 					$(".participant_list_items").append(data);
-				} //end success
+					}
+				} //end success or statusCode
 			});//end ajax
-	}, 5000); //end setInterval
+	}, 2000); //end setInterval
 }); //end doc.ready
 
 //onclick change image selector for the conferences
