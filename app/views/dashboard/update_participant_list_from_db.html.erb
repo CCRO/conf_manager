@@ -1,6 +1,6 @@
-<div class = "row">
+<!-- <div class = "row"> -->
 	<% @participants.each_with_index do |call,index| %>
-		<div class="span3-5">
+		<!-- <div class="span3-5-disable"> -->
 			<script>
 				$(function() {
 					//makes the participant call draggable
@@ -8,8 +8,8 @@
 				});
 			</script>
 			
-			<div id="P<%=call.sid%>" class="ui-widget-content">
-				<div class="btn primary_phone" style="width: 150px">
+			<div id="P<%=call.sid%>" class="ui-widget-content" style="display: inline-block; width: 180px;">
+				<div class="btn primary_phone" style="width: 150px;">
 					<p><%= get_caller_name(call) %> <%= link_to_hangup_call(call.sid) %> </p>
 					<p>From:&nbsp;<%= call.from %></p>
 					<p>To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= call.to %> <%= link_to_toggle_mute_call(call.sid) %></p>
@@ -18,12 +18,12 @@
 			
 			<!-- This sets 2 calls per row, remember zero index affects mnodulo behavior!-->
 			<% if (index % 2) == 1 %>
-				</div><!-- end middle row-->
-				<div class="row">
+			<!--	</div>
+				<div class="row"> -->
 			<% end %>	
-		</div><!--end span4 -->
+		<!--</div>end span4 -->
 	<% end %>
-</div> <!-- end last row-->
+<!-- </div> end last row-->
 
 <script>
 	//update page info for the append methodology to work
