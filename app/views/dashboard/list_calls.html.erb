@@ -1,6 +1,6 @@
 <% if @calls.count == 0%>
 	no calls
 <% end %>
-<% @calls.each do |call %>
+<% @calls.each do |call| %>
 <p><%=call.id%> | <%=call.sid%></p><br />
 <% end %>
