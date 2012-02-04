@@ -23,7 +23,7 @@
 	</div><!-- end span10 -->
 		
 		<div class="span7">
-			<h3>Participants (<span id="part-list-count">0</span>)</h3>
+			<h3>Participants <span id="part-list-name"></span> (<span id="part-list-count">0</span>)</h3>
 			<!-- Insert the participant list here-->
 			<div class="participant_list_items">
 			</div> <!--  end .participant_list_items-->	
@@ -32,27 +32,36 @@
 </div><!-- end row-->
 
 <script>
+//Script that updates the participant list every few seconds
 $(document).ready(function() {
 	//resets the sid list value when a user refreshes the browser
-	$("#sidstr").attr("value","");
+	$("#part-sid-str").attr("value","");
 	//updates the call list every few seconds
 	setInterval(function(){
-			var urlforcalllist = '/dashboard/update_call_list_from_db?sidstr=' + $("#sidstr").attr("value")
+			var confname = $("img[src$='/greenarrow.png']").attr("id");
+			var partsidstr = $("#part-sid-str").attr("value");
+			var urlforpartlist = '/dashboard/update_participant_list_from_db?sidstr=' + partsidstr +'&conf_name=' + confname;
 			$.ajax({
-				url: urlforcalllist,
+				url: urlforpartlist,
 				type: 'get',
 				dateType: 'html',
 				success: function(data) {
-					$(".call_list_items").append(data);
+					$(".participant_list_items").append(data);
 				} //end success
 			});//end ajax
 	}, 1500); //end setInterval
 }); //end doc.ready
+
+//onclick change image selector for the conferences
+$(document).ready(function() {
+    $(".select-conf").click(function(event) {
+        id_of_clicked = '#' + event.target.id;
+        $(".select-conf").attr("src","/bluearrow.png");
+        $(id_of_clicked).attr("src","/greenarrow.png");
+        $("body").toggleClass("wait",true);
+    });
+});
 </script>
-
-
-
-
 
 <script>
 	//dropabble script for the conference table
@@ -86,42 +95,3 @@ $(document).ready(function() {
   		$.post(url);
 	}
 </script>
-
-<script>
-	//Script that updates the participant list every few seconds
-	var participanttimer; //using this instead of window.setTimeout since this content isn't reloaded with ajax
-	function replace_conference_participant_list() {
-		//find out which button is selected.
-		var tmp = $("img[src$='/greenarrow.png']").attr("id");
-		//alert(tmp);
-		var urltogo = "<%=(BASE_URL + '/dashboard/update_conference_participant_list?conf_name=').to_s%>" + tmp;
-		
-		$.ajax({
-			url: urltogo,
-			type: 'get',
-			dateType: 'html',
-			success: function(data) {
-				// Replace the list with the new one.
-				$('.participant_list_items').html(data);
-				// And restart the timer.
-				//window.setTimeout(replace_conference_participant_list(), 2000);
-				participanttimer = setTimeout("replace_conference_participant_list()", 2000 );
-			}//,
-			//failure: alert("Failed to get the updated participant list from " + urlrecieved + '\r\n urltogo: ' + urltogo)
-		});
-	}
-		
-	//onclick change image selector 
-	$(document).ready(function() {
-	    $(".select-conf").click(function(event) {
-	        id_of_clicked = '#' + event.target.id;
-	        $(".select-conf").attr("src","/bluearrow.png");
-	        $(id_of_clicked).attr("src","/greenarrow.png");
-	        $("h3 > .participant_list_items").append("...loading");
-	        $("body").toggleClass("wait",true);
-			replace_conference_participant_list();
-	    });
-	});
-</script>
-
-

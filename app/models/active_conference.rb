@@ -4,45 +4,74 @@ class ActiveConference < ActiveRecord::Base
   validates :sid, :uniqueness => true
   
   def self.update_all_participant_lists
-    
+    ActiveConference.all.each do |conf|
+      ActiveConference.update_participant_list(conf.friendly_name)
+    end
   end
   
   def self.update_participant_list(conf_name)
-    puts "test5"
     begin
       #create client
       client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
       
       #is the conf still active?
-      conf_id = ActiveConference.where("friendly_name = ?",conf_name).first.id
-      if conf_id.nil? or conf_id.blank?
-        puts "test6"
+      the_conf = ActiveConference.where("friendly_name = ?",conf_name).first
+      if the_conf.nil? 
         return false
       end
-                
+      
+      conf_id = the_conf.id
+      if conf_id.nil? or conf_id.blank?
+        return false
+      end
+      
+      #get the list of participants in the conference
+      old_part_list = []
+      ActiveConference.find(conf_id).active_calls.each do |call|
+        old_part_list << call.sid
+      end          
+      
       #pull conference from web
       conference = client.account.conferences.list(:FriendlyName => conf_name,:status => 'in-progress')
+      
 
-      #loop throught he participants and 
+      #loop throught he participants and update the calls.
       if !conference.empty?
-        puts "test7"
           participants = conference[0].participants
           participants.list.each do |participant|
             caller = ActiveCall.where("sid = ?", participant.call_sid).first
             if  !caller.nil?
-               puts "test8"
                conf_to_join = ActiveConference.find(conf_id)
                if !conf_to_join.nil?
-                  puts "test9"
                   caller.active_conference = conf_to_join
+                  caller.save
                end
-               puts "test10"
-              caller.save
             end
           end#end participant.list.each
       end
+      
+      #get the updated list
+      new_part_list = []
+      ActiveConference.find(conf_id).active_calls.each do |call|
+        new_part_list << call.sid
+      end
+      
+      #disasociate the outdated calls
+      part_to_rem = old_part_list - new_part_list
+      
+      part_to_remove.each do |part_sid|
+        call = ActiveCall.where("sid = ?",part_sid).first
+        #check to see if the call is still active
+        if !call.nil?
+          #check if the call moved to a different conference
+          if call.active_conference == the_conf
+            #removed the calls from the conference
+            call.active_conference = nil
+          end
+        end
+      end
+      
     end #end begin  
-    puts "test11"
   end # end update_participant_list
   
   def self.update_conference_list

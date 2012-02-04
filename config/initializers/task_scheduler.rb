@@ -10,7 +10,7 @@ scheduler.every("2000") do
 end
 
 #update the active conferences
-scheduler.every("3000") do
+scheduler.every("2000") do
   ActiveConference.update_conference_list
   ActiveConference.update_all_participant_lists
 end

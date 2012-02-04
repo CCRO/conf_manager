@@ -20,6 +20,7 @@
 <script>
 	//update page info for the append methodology to work
 	$("#sidstr").attr("value","<%= @sid_list %>");
+	//update call count on page
 	$("#call-list-count").html("<%= @call_count %>");
 	//fadeout all the discontinued call
 	<% @sid_to_remove.each do |sid| %>

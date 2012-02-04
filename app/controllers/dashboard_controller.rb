@@ -169,6 +169,47 @@ class DashboardController < ApplicationController
     end
   end
   
+  def update_participant_list_from_db
+    #passed in sidstr= &conf_name=
+    sid_passed_in = params[:sidstr]
+    @conf_name = params[:conf_name]
+    
+    #if no conference is sent in, do nothing
+    if @conf_name.nil? or conf_name.blank?
+      render :nothing => true
+      return
+    end
+    
+    #just in case
+    if sid_passed_in.nil?
+      sid_passed_in = ""
+    end
+    
+    #split the sids into an array
+    web_sid_list = []
+    if !sid_passed_in.blank?
+      web_sid_list = sid_passed_in.split('-')
+    end
+    
+    @part_sid_list = []
+    @part_count = 0
+    
+    conf = ActiveConference.where("friendly_name = ?",@conf_name).first
+    if !conf.empty?
+      @participants = conf.active_calls.all
+      @participants.each do |part|
+        @part_sid_list << part.sid
+      end
+      @part_count = @participants.count
+    end
+    
+    @part_sid_to_remove = web_sid_list - @part_sid_list 
+    
+    respond_to do |format|
+        format.html  {render :layout => false}
+    end
+  end
+  
   def update_call_list_from_db
     #get sidlist passed in
     sid_passed_in = params[:sidstr]
