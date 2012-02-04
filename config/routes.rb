@@ -4,6 +4,7 @@ ConfManager::Application.routes.draw do
   resources :contacts
 
   get "dashboard/index"
+  get "dashboard/list_calls"
   get "dashboard/update_call_list"
   get "dashboard/update_call_list_from_db"
   get "dashboard/update_participant_list_from_db"

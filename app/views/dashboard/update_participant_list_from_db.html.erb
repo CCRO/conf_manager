@@ -26,9 +26,6 @@
 </div> <!-- end last row-->
 
 <script>
-	//once the participant list loads, return the cursor to normal
-	$("body").toggleClass("wait",false);
-	
 	//update page info for the append methodology to work
 	$("#part-sid-str").attr("value","<%= @part_sid_list %>");
 	
@@ -40,5 +37,7 @@
 	<% @part_sid_to_remove.each do |sid| %>
 		$("[id=P<%=sid%>]").fadeOut(1000);
 	<% end %>
+	//once the participant list loads, return the cursor to normal
+	$("body").toggleClass("wait",false);
 </script>
 	

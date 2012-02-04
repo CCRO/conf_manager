@@ -251,6 +251,14 @@ class DashboardController < ApplicationController
         format.html  {render :layout => false}
     end
   end
+  
+  def list_calls
+    @calls = ActiveCall.all
+    
+    respond_to do |format|
+        format.html  {render :layout => false}
+    end
+  end
 
   def update_call_list
       #create client
