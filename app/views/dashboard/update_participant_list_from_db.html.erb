@@ -35,7 +35,7 @@
 	
 	//fadeout only the discontinued participants
 	<% @part_sid_to_remove.each do |sid| %>
-		$("[id=P<%=sid%>]").fadeOut(1000);
+		$("[id=P<%=sid%>]").fadeOut(1000).attr("id","");
 	<% end %>
 	//once the participant list loads, return the cursor to normal
 	$("body").toggleClass("wait",false);
