@@ -1,6 +1,6 @@
 <div class="sidebar">
 	<div class="well">
-			<h3>Active Calls (<span id="call-list-count">0</span>)</h3>
+			<h3>Active Calls (<span id="call-list-count">*</span>)</h3>
 			<!-- Insert the call list here-->
 	    	<div class="call_list_items">	
 	    	</div> <!--  end .call_list_items-->
@@ -8,6 +8,7 @@
     </div><!--end .well-->
 </div><!--end .sidebar-->
 
+<!-- 
 <script>
 
 $(document).ready(function() {
@@ -29,25 +30,29 @@ $(document).ready(function() {
 }); //end doc.ready
 </script>
 
-<!-- 
+-->
 <script>
-$(document).ready(function() {
-	$("#sidstr").attr("value","");
-	
-	function get_call_list() {
+
+function get_call_list() {
 		var urlforcalllist = '/dashboard/update_call_list_from_db?sidstr=' + $("#sidstr").attr("value");
 		$.ajax({
 			url: urlforcalllist,
 			type: 'get',
 			dateType: 'html',
+			async: true,
 			success: function(data) {
 				$(".call_list_items").append(data);
+				setTimeout('get_call_list()',2000);
+				//$(get_call_list()).delay(2000);
 			} //end success
 		});//end ajax
-		$(get_call_list()).delay(2000);
 	}
-	
+	//initial function call
+
+$(document).ready(function() {
+	$("#sidstr").attr("value","");
 	get_call_list();
 });
+
 </script>
--->
+
