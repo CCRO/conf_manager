@@ -47,7 +47,7 @@ class ActiveConference < ActiveRecord::Base
               caller.save
            end
         end
-      end #end participant.list.each
+      end unless participants.nil? #end participant.list.each
 
       
       #get the updated list
