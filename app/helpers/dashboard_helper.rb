@@ -41,9 +41,9 @@ module DashboardHelper
     js += '$("[id$=' + sid + ']").find("[class=mute-link]").disable;'
     js += '$currcolor = $("[id$=' + sid + ']").find("[class=mute-img]").css("background");'
     js += '$("[id$=' + sid + ']").find("[class=mute-img]").css("background","white");'
-    js += 'if (currcolor == "green"){$("[id$=' + sid + ']").find("[class=mute-img]").css("background","red");}'
-    js += 'else{$("[id$=' + sid + ']").find("[class=mute-img]").css("background","green");}'
-    js += '$("[id$=' + sid + ']").find("[class=mute-link]").enable;'
+    js += 'if (currcolor == "green"){$("[id$=' + sid + ']").find("[class=mute-img]").css("background","red").delay(2000);}'
+    js += 'else{$("[id$=' + sid + ']").find("[class=mute-img]").css("background","green").delay(2000);}'
+    js += '$("[id$=' + sid + ']").find("[class=mute-link]").enable.delay(4000);'
     
     init_style = "float: right; background: " + color + "; margin-right: -10px;"
     link_to_function image_tag('/microphone.png', :style => init_style , :class => "mute-img" ), js, :class => "mute-link"
