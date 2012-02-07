@@ -42,7 +42,7 @@ function get_call_list() {
 			async: true,
 			success: function(data) {
 				$(".call_list_items").append(data);
-				setTimeout('get_call_list()',2000);
+				window.setTimeout('get_call_list()',2000);
 				//$(get_call_list()).delay(2000);
 			} //end success
 		});//end ajax

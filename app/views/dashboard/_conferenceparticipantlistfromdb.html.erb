@@ -23,7 +23,7 @@
 	</div><!-- end span10 -->
 		
 		<div class="span7">
-			<h3>Participants <span id="part-list-name"></span> (<span id="part-list-count">0</span>)</h3>
+			<h3>Participants <span id="part-list-name"></span> (<span id="part-list-count">*</span>)</h3>
 			<!-- Insert the participant list here-->
 			<div class="participant_list_items" style="display: block;">
 			</div> <!--  end .participant_list_items-->	
@@ -31,7 +31,8 @@
 		</div><!-- end span7-->
 </div><!-- end row-->
 
-<script>
+<!-- 
+	
 //Script that updates the participant list every few seconds
 $(document).ready(function() {
 	//resets the sid list value when a user refreshes the browser
@@ -55,6 +56,35 @@ $(document).ready(function() {
 	}, 3000); //end setInterval
 }); //end doc.ready
 
+	
+-->
+
+
+<script>
+
+function get_part_list() {
+		$confname = $("img[src$='/greenarrow.png']").attr("id");
+		$partsidstr = $("#part-sid-str").attr("value");
+		var urlforpartlist = '/dashboard/update_participant_list_from_db?sidstr=' + $partsidstr +'&conf_name=' + $confname;
+		$.ajax({
+			url: urlforpartlist,
+			type: 'get',
+			dateType: 'html',
+			async: true,
+			success: function(data) {
+				$(".participant_list_items").append(data);
+				window.setTimeout('get_part_list()',2000);
+			} //end success
+		});//end ajax
+	}
+	//initial function call
+
+$(document).ready(function() {
+	$("#part-sid-str").attr("value","");
+	get_part_list();
+});
+
+
 //onclick change image selector for the conferences
 $(document).ready(function() {
     $(".select-conf").click(function(event) {
@@ -62,6 +92,7 @@ $(document).ready(function() {
         $(".select-conf").attr("src","/bluearrow.png");
         $(id_of_clicked).attr("src","/greenarrow.png");
         $("body").toggleClass("wait",true);
+        $("#part-list-count").attr("value","*");
     });
 });
 </script>

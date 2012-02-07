@@ -16,7 +16,7 @@ development:
   adapter: postgresql
   encoding: unicode
   database: conf_manager_development
-  pool: 10
+  pool: 20
   username: postgres
   password: root4postgres
 
@@ -42,7 +42,7 @@ test:
   adapter: postgresql
   encoding: unicode
   database: conf_manager_test
-  pool: 10
+  pool: 20
   username: postgres
   password: root4postgres
 
@@ -50,6 +50,6 @@ production:
   adapter: postgresql
   encoding: unicode
   database: conf_manager_production
-  pool: 10
+  pool: 20
   username: postgres
   password: root4postgres
