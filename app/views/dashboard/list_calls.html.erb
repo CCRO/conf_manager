@@ -2,5 +2,5 @@
 	no calls
 <% end %>
 <% @calls.each do |call| %>
-<p><%=call.id%> | <%=call.sid%></p><br />
+<p><%=call.id%> | <%=call.sid%> | muted: <%= call.muted %></p>
 <% end %>

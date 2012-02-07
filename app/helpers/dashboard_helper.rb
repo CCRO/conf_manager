@@ -38,15 +38,16 @@ module DashboardHelper
     end
     #js = 'var tmp = $(this).parent().parent().attr("style");alert(tmp); var url = "' + BASE_URL + '/dashboard/mute_call/?sid=' + sid + '"; $.post(url);'
     js = 'var url = "/dashboard/mute_call/?sid=' + sid + '"; $.post(url);'
-    js += '$("[id$=' + sid + ']").find("[class=mute-link]").disable;'
-    js += '$currcolor = $("[id$=' + sid + ']").find("[class=mute-img]").css("background");'
-    js += '$("[id$=' + sid + ']").find("[class=mute-img]").css("background","white");'
-    js += 'if (currcolor == "green"){$("[id$=' + sid + ']").find("[class=mute-img]").css("background","red").delay(2000);}'
-    js += 'else{$("[id$=' + sid + ']").find("[class=mute-img]").css("background","green").delay(2000);}'
-    js += '$("[id$=' + sid + ']").find("[class=mute-link]").enable.delay(4000);'
+    js += '$currcolor = $("[id$=' + sid + ']").find("[class="mute-img circle"]").css("background-color");'
+    #js += '$("[id$=' + sid + ']").find("[class=mute-img]").css("background-color","white");'
+    js += 'alert($currcolor);'
+    #js += '$("[id$=' + sid + ']").find("[class=mute-link]").disable;'
+    #js += '$("[id$=' + sid + ']").find("[class=mute-link]").enable.delay(4000);'
+    #js += 'if ($currcolor == "rgb(0, 128, 0)"){$("[id$=' + sid + ']").find("[class=mute-img circle]").css("background","rgb(239, 72, 26)");}'
+    #js += 'else{$("[id$=' + sid + ']").find("[class=mute-img cirlce]").css("background","green");}'
     
-    init_style = "float: right; background: " + color + "; margin-right: -10px;"
-    link_to_function image_tag('/microphone.png', :style => init_style , :class => "mute-img" ), js, :class => "mute-link"
+    init_style = "float: right; background-color: " + color + "; margin-right: -10px;"
+    link_to_function image_tag('/microphone.png', :style => init_style , :class => "mute-img circle" ), js, :class => "mute-link"
   end
   
   def get_conf_pin(conf)

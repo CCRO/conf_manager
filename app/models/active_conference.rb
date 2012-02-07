@@ -4,18 +4,19 @@ class ActiveConference < ActiveRecord::Base
   validates :sid, :uniqueness => true
   
   def self.update_all_participant_lists
-    ActiveConference.all.each do |conf|
-      ActiveConference.update_participant_list(conf.friendly_name)
-    end
+    conferences = all
+    conferences.each do |conf|
+      update_participant_list(conf.friendly_name)
+    end unless conferences.nil?
   end
   
   def self.update_participant_list(conf_name)
     begin
       #create client
-      client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
+      client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken, :ssl_verify_peer => false)
       
       #is the conf still active?
-      the_conf = ActiveConference.where("friendly_name = ?",conf_name).first
+      the_conf = where("friendly_name = ?",conf_name).first
       if the_conf.nil? 
         return false
       end
@@ -27,7 +28,7 @@ class ActiveConference < ActiveRecord::Base
       
       #get the list of participants in the conference
       old_part_list = []
-      ActiveConference.find(conf_id).active_calls.each do |call|
+      find(conf_id).active_calls.each do |call|
         old_part_list << call.sid
       end          
       
@@ -36,23 +37,22 @@ class ActiveConference < ActiveRecord::Base
       
 
       #loop throught he participants and update the calls.
-      if !conference.empty?
-          participants = conference[0].participants
-          participants.list.each do |participant|
-            caller = ActiveCall.where("sid = ?", participant.call_sid).first
-            if  !caller.nil?
-               conf_to_join = ActiveConference.find(conf_id)
-               if !conf_to_join.nil?
-                  caller.active_conference = conf_to_join
-                  caller.save
-               end
-            end
-          end#end participant.list.each
-      end
+      participants = conference[0].participants unless conference.empty?
+      participants.list.each do |participant|
+        caller = ActiveCall.where("sid = ?", participant.call_sid).first
+        if  !caller.nil?
+           conf_to_join = find(conf_id)
+           if !conf_to_join.nil?
+              caller.active_conference = conf_to_join
+              caller.save
+           end
+        end
+      end #end participant.list.each
+
       
       #get the updated list
       new_part_list = []
-      ActiveConference.find(conf_id).active_calls.each do |call|
+      find(conf_id).active_calls.each do |call|
         new_part_list << call.sid
       end
       
@@ -77,7 +77,7 @@ class ActiveConference < ActiveRecord::Base
   def self.update_conference_list
     begin
       #create client
-      client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
+      client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken, :ssl_verify_peer => false)
       
       #http gets the active conference list from twilio
       conf_list = client.account.conferences.list(:status => 'in-progress')
@@ -90,16 +90,14 @@ class ActiveConference < ActiveRecord::Base
             
       #build an Active_Conference sid vector from the db
       conf_db_sid_list = []
-      ActiveConference.all.each do |active_conf|
-        conf_db_sid_list << active_conf.sid
-      end
+      conf_db_sid_list = select(:sid).map { |c| c.sid } unless (select(:sid).nil? or select(:sid).empty?)
        
       #find confs in db and not in web list
       confs_to_remove = conf_db_sid_list - conf_web_sid_list
       
       #remove calls from db by sid
       if !confs_to_remove.empty?
-        ActiveConference.destroy_all(:sid => confs_to_remove)
+        destroy_all(:sid => confs_to_remove)
       end
       
       #find confs in web list but not db
@@ -109,7 +107,7 @@ class ActiveConference < ActiveRecord::Base
       conf_list.each do |web_conf|
         if confs_to_add.include?(web_conf.sid)
           #create the conf in the db
-          added_conf = ActiveConference.new(
+          added_conf = new(
             :sid => web_conf.sid,
             :friendly_name => web_conf.friendly_name
           )

@@ -14,3 +14,8 @@ end
 scheduler.every("3000") do
   ActiveConference.update_all_participant_lists
 end
+
+scheduler.every("5000") do
+  ActiveRecord::Base.connection_pool.clear_reloadable_connections!
+  ActiveRecord::Base.connection_pool.clear_stale_cached_connections!
+end

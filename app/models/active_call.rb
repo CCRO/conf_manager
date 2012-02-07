@@ -25,28 +25,26 @@ class ActiveCall < ActiveRecord::Base
   def self.update_call_list
     begin
       #create client
-      client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken)
+      client = Twilio::REST::Client.new( TwilioAccountSID , TwilioAuthToken, :ssl_verify_peer => false)
       #gets the call list
       call_list = client.account.calls.list(:status => 'in-progress')
       
       #build an Active_calls sid vector
       call_db_list = []
-      ActiveCall.all.each do |active_call|
-        call_db_list << active_call.sid
-      end
+      call_db_list = select(:sid).map { |c| c.sid } unless (select(:sid).nil? or select(:sid).empty?)
       
       #build a call_list sid vector
       call_web_list = []
-      call_list.each do |web_call|
-        call_web_list << web_call.sid     
-      end
+      call_web_list = call_list.map { |web_call| web_call.sid } unless call_list.empty?
+      #call_list.each do |web_call|
+      #  call_web_list << web_call.sid     
+      #end
       
       #find calls in db and not in call_list
       calls_to_remove = (call_db_list - call_web_list )
       #remove calls from db by sid
-      if !calls_to_remove.empty?
-        ActiveCall.destroy_all(:sid => calls_to_remove)
-      end
+      destroy_all(:sid => calls_to_remove) unless calls_to_remove.empty?
+
       
       #find call in call_list but not db
       calls_to_add = ( call_web_list - call_db_list)
@@ -55,10 +53,10 @@ class ActiveCall < ActiveRecord::Base
         #if the call needs to be added
         if calls_to_add.include?(web_call.sid)
           #format name
-          callerstr = ActiveCall.get_caller_name(web_call)
+          callerstr = get_caller_name(web_call)
        
           #create the clal in the db
-          added_call = ActiveCall.new(
+          added_call = new(
               :sid => web_call.sid,
               :to => web_call.to[2..-1],
               :from => web_call.from[2..-1],

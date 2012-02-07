@@ -2540,3 +2540,12 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 	border-width: 5px; 
 	border-style: outset; */
 }
+
+.circle {
+width: 24px;
+height: 24px;
+-moz-border-radius: 12px;
+-webkit-border-radius: 12px;
+}
+
+
