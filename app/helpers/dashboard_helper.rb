@@ -21,7 +21,7 @@ module DashboardHelper
     #attempt to select all of them
     js = '$("[id$=' + sid + ']").find(":first").attr("class","btn hangup_phone");'
     js += 'var url = "' + BASE_URL + '/dashboard/hangup_call_immediate/?sid=' + sid + '"; $.post(url);'
-    js += '$("[id$=' + sid + ']").find(":first").fadeOut(1000).delay(500);'
+    js += '$("[id$=' + sid + ']").find(":first").fadeOut(2000).delay(1000);'
     #this only selects the one that was clicked
     #js = '$(this).parent().parent().attr("class","btn hangup_phone"); var url = "' + BASE_URL + '/dashboard/hangup_call_immediate/?sid=' + sid + '"; $.post(url);'
     link_to_function image_tag('/redx.png', :style => "float: right; margin-right: -10px;" ), js, :confirm => "Hang up call?"
@@ -29,8 +29,24 @@ module DashboardHelper
   
   def link_to_toggle_mute_call(sid)
     #check if caller is muted
-    js = 'var tmp = $(this).parent().parent().attr("style");alert(tmp); var url = "' + BASE_URL + '/dashboard/mute_call/?sid=' + sid + '"; $.post(url);'
-    link_to_function image_tag('/microphone.png', :style => "float: right; background: green; margin-right: -10px;" ), js
+    call = ActiveCall.where("sid = ?",sid).first
+    color = "green"
+    if !call.nil?
+      if call.muted?
+        color = "red"
+      end
+    end
+    #js = 'var tmp = $(this).parent().parent().attr("style");alert(tmp); var url = "' + BASE_URL + '/dashboard/mute_call/?sid=' + sid + '"; $.post(url);'
+    js = 'var url = "/dashboard/mute_call/?sid=' + sid + '"; $.post(url);'
+    js += '$("[id$=' + sid + ']").find("[class=mute-link]").disable;'
+    js += '$currcolor = $("[id$=' + sid + ']").find("[class=mute-img]").css("background");'
+    js += '$("[id$=' + sid + ']").find("[class=mute-img]").css("background","white");'
+    js += 'if (currcolor == "green"){$("[id$=' + sid + ']").find("[class=mute-img]").css("background","red");}'
+    js += 'else{$("[id$=' + sid + ']").find("[class=mute-img]").css("background","green");}'
+    js += '$("[id$=' + sid + ']").find("[class=mute-link]").enable;'
+    
+    init_style = "float: right; background: " + color + "; margin-right: -10px;"
+    link_to_function image_tag('/microphone.png', :style => init_style , :class => "mute-img" ), js, :class => "mute-link"
   end
   
   def get_conf_pin(conf)
